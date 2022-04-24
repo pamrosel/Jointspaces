@@ -1,11 +1,16 @@
 // Call express framework 
 const express = require('express')
+const colors = require('colors')
 // dotenv environment variables calling .config
 const dotenv = require('dotenv').config()
 // Call error middleware for development mode 
 const { errorHandler } = require('./middleware/errorMiddleware')
+// Call mongo atlas database 
+const connectDB = require('./config/db')
 // Server running on port 5000 
 const port = process.env.PORT || 5000
+
+connectDB()
 
 // Initialize express 
 const server = express()
