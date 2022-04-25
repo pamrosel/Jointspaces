@@ -5,9 +5,11 @@ const router = express.Router()
 
 const{ getSpaces, createSpace, updateSpace, deleteSpace } = require('../controllers/spaceController')
 
-router.get('/spaces', getSpaces)
-router.post('/spaces', createSpace)
-router.put('/spaces/:id', updateSpace)
-router.delete('/spaces/:id', deleteSpace)
+const {protect} = require('../middleware/authMiddleware')
+
+router.get('/spaces', protect, getSpaces)
+router.post('/spaces', protect, createSpace)
+router.put('/spaces/:id', protect, updateSpace)
+router.delete('/spaces/:id', protect, deleteSpace)
 
 module.exports = router 

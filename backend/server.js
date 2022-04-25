@@ -9,6 +9,8 @@ const { errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 // Server running on port 5000 
 const port = process.env.PORT || 5000
+// Import rate limiter functions
+const { limiter, sessionLimiter } = require('./middleware/rateLimiterMiddleware')
 
 connectDB()
 
@@ -18,9 +20,18 @@ const server = express()
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
+// Link up users controller 
+server.use('/api', require('./routes/userRoutes'))
+
 // Link up spaces controller 
 server.use('/api', require('./routes/spaceRoutes'))
 
+// Link up Bookings controller 
+server.use('/api', require('./routes/bookingRoutes'))
+
 server.use(errorHandler)
+
+server.use(limiter)
+server.use(sessionLimiter)
 
 server.listen(port, () => console.log(`Server started on port ${port}`))
