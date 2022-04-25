@@ -18,9 +18,9 @@ const getBookings = asyncHandler (async (req, res) => {
 // @access  Private
 
 const createBooking = asyncHandler (async (req, res) => {
-    if(!req.body.spacename) {
+    if(!req.body.spaceid) {
         res.status(400).json
-        throw new Error('Please add a space name')
+        throw new Error('Please add a space id')
     }
     if(!req.body.bookingstart) {
         res.status(400).json
@@ -32,7 +32,7 @@ const createBooking = asyncHandler (async (req, res) => {
     }
 
     const booking = await Booking.create({
-        spacename: req.body.spacename,
+        spaceid: req.body.spaceid,
         bookingstart: req.body.bookingstart,
         bookingend: req.body.bookingend,
         user: req.user.id
@@ -101,8 +101,6 @@ const deleteBooking = asyncHandler (async (req, res) => {
 
     res.status(200).json({ id: req.params.id })
 })
-
-
 
 module.exports = {
     getBookings,

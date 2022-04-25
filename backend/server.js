@@ -12,6 +12,7 @@ const port = process.env.PORT || 5000
 // Import rate limiter functions
 const { limiter, sessionLimiter } = require('./middleware/rateLimiterMiddleware')
 
+// Connect to the database
 connectDB()
 
 // Initialize express 
@@ -20,18 +21,24 @@ const server = express()
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
-// Link up users controller 
+// Link up users controller, prefixing route url with /api
 server.use('/api', require('./routes/userRoutes'))
 
-// Link up spaces controller 
+// Link up spaces controller, prefixing route url with /api
 server.use('/api', require('./routes/spaceRoutes'))
 
-// Link up Bookings controller 
+// Link up Bookings controller, prefixing route url with /api
 server.use('/api', require('./routes/bookingRoutes'))
 
+// Link up Requests controller, prefixing route url with /api
+server.use('/api', require('./routes/requestRoutes'))
+
+// Call error handling middleware
 server.use(errorHandler)
 
+// Call rate limiting middleware
 server.use(limiter)
 server.use(sessionLimiter)
 
+// Listen to the port 
 server.listen(port, () => console.log(`Server started on port ${port}`))
