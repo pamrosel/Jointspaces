@@ -2,7 +2,7 @@ const express = require('express')
 const rateLimit = require('express-rate-limit')
 
 const limiter = rateLimit({
-    windowMs: 1000, // 1s
+    windowMs: 1000, // 1000 milliseconds = 1s
     max: 1000, // Limit each IP to 1000 requests per 1 second 'window'
     standardHeaders: true, // Return 'RateLimit-*' headers
     message: "Too many requests, please try again later"
@@ -20,3 +20,4 @@ module.exports = {
     limiter, 
     sessionLimiter 
 }
+

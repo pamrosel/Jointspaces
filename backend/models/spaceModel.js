@@ -48,7 +48,12 @@ const spaceSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add spaceusers'],
         ref: 'User'
-    }]
+    }],
+    spaceimage: {
+        type: String,
+        required: [true, 'Please add an image of the space'],
+        maxlength: [300, 'Address cannot be more than 300 characters']
+    }
 }, 
     {
     timestamps: true,

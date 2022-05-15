@@ -4,10 +4,10 @@ const express = require('express')
 const router = express.Router()
 
 // Import following functions from spaceContoller
-const{ getSpaces, createSpace, updateSpace, deleteSpace } = require('../controllers/spaceController')
+const{ getSpaces, createSpace, updateSpace, deleteSpace, getAllSpaces, getSpaceSingle } = require('../controllers/spaceController')
 
 // Call middleware
-const {protect} = require('../middleware/authMiddleware')
+const { protect } = require('../middleware/authMiddleware')
 const { logger } = require('../middleware/loggingMiddleware')
 
 // Create GET api route to display a users spaces
@@ -21,6 +21,12 @@ router.put('/spaces/:id', protect, logger, updateSpace)
 
 // Create DELETE api route to delete a space 
 router.delete('/spaces/:id', protect, logger, deleteSpace)
+
+// GET api route to display all spaces
+router.get('/allspaces', getAllSpaces)
+
+// GET api route to display all bookings
+router.get('/spacebookings/:id', getSpaceSingle)
 
 // Export the router
 module.exports = router 

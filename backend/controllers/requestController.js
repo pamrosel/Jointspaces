@@ -18,24 +18,19 @@ const getRequests = asyncHandler (async (req, res) => {
 // @access  Private
 
 const createRequest = asyncHandler (async (req, res) => {
+    if(!req.body.user) {
+        res.status(400).json
+        throw new Error('Please add a user')
+    }
+
     if(!req.body.spaceid) {
         res.status(400).json
         throw new Error('Please add a space id')
     }
-    if(!req.body.requeststart) {
-        res.status(400).json
-        throw new Error('Please add a request start time')
-    }
-    if(!req.body.requestend) {
-        res.status(400).json
-        throw new Error('Please add a request end time')
-    }
 
     const request = await Request.create({
-        spaceid: req.body.spaceid,
-        requeststart: req.body.requeststart,
-        requestend: req.body.requestend,
-        user: req.user.id
+        user: req.user.id,
+        spaceid: req.body.spaceid
     })
     res.status(200).json(request)
 })

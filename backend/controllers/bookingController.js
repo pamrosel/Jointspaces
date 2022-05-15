@@ -1,7 +1,9 @@
 // Call express-async-handler to wrap async/await try/catch functionality 
 const asyncHandler = require('express-async-handler')
+// Booking has bunch of mongoose methods on it to manipulate 
 const Booking = require('../models/bookingModel')
 const User = require('../models/userModel')
+const Space = require('../models/spaceModel')
 
 // @desc    Get bookings
 // @route   GET /api/bookings
@@ -10,6 +12,22 @@ const User = require('../models/userModel')
 const getBookings = asyncHandler (async (req, res) => {
     const bookings = await Booking.find({ user: req.user.id })
 
+    res.status(200).json(bookings)
+})
+
+// @desc    Get allbookings
+// @route   GET /api/allbookings
+// @access  Public
+const getAllBookings = asyncHandler (async (req, res) => {
+    const bookings = await Booking.find().populate('user').populate('spaceid')
+    res.status(200).json(bookings)
+})
+
+// @desc    Get bookings based on spaceid as params
+// @route   GET /api/bookings/:id
+// @access  Public
+const getBookingsbyid = asyncHandler (async (req, res) => {
+    const bookings = await Booking.find({ spaceid: req.params.id }).populate('user')
     res.status(200).json(bookings)
 })
 
@@ -44,32 +62,32 @@ const createBooking = asyncHandler (async (req, res) => {
 // @route   PUT /api/bookings/:id
 // @access  Private
 
-const updateBooking = asyncHandler (async (req, res) => {
-    const booking = await Booking.findById(req.params.id)
+// const updateBooking = asyncHandler (async (req, res) => {
+//     const booking = await Booking.findById(req.params.id)
 
-    if(!booking) {
-        res.status(400)
-        throw new Error ('Booking not found')
-    }
+//     if(!booking) {
+//         res.status(400)
+//         throw new Error ('Booking not found')
+//     }
 
-    const user = await User.findById(req.user.id)
+//     const user = await User.findById(req.user.id)
 
-    // Check for user
-    if(!user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
+//     // Check for user
+//     if(!user) {
+//         res.status(401)
+//         throw new Error('User not found')
+//     }
 
-    // Make sure the logged in user matches the space user 
-    if(booking.user.toString() !== user.id) {
-        res.status(401)
-        throw new Error('User not authorized')
-    }
+//     // Make sure the logged in user matches the space user 
+//     if(booking.user.toString() !== user.id) {
+//         res.status(401)
+//         throw new Error('User not authorized')
+//     }
 
-    const updatedBooking = await Booking.findByIdAndUpdate(req.params.id, req.body, { new: true, })
+//     const updatedBooking = await Booking.findByIdAndUpdate(req.params.id, req.body, { new: true, })
 
-    res.status(200).json(updatedBooking)
-})
+//     res.status(200).json(updatedBooking)
+// })
 
 // @desc    Delete space
 // @route   DELETE /api/bookings/:id
@@ -105,6 +123,7 @@ const deleteBooking = asyncHandler (async (req, res) => {
 module.exports = {
     getBookings,
     createBooking,
-    updateBooking,
     deleteBooking,
+    getAllBookings,
+    getBookingsbyid,
 }

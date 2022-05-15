@@ -12,6 +12,7 @@ const {
 
 // Call middleware
 const { protect } = require('../middleware/authMiddleware')
+const { logger } = require('../middleware/loggingMiddleware')
 
 // Create POST api route to register a user
 router.post('/users', registerUser)
@@ -20,7 +21,7 @@ router.post('/users', registerUser)
 router.post('/users/login', loginUser)
 
 // Create GET api route display user data
-router.get('/users/me', protect, getUserData)
+router.get('/users/me', protect, logger, getUserData)
 
 // Export the router
 module.exports = router 

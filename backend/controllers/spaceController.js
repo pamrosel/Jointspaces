@@ -9,8 +9,26 @@ const User = require('../models/userModel')
 
 const getSpaces = asyncHandler (async (req, res) => {
     const spaces = await Space.find({ user: req.user.id })
-
     res.status(200).json(spaces)
+
+})
+
+// @desc    Get allspaces
+// @route   GET /api/allspaces
+// @access  Public
+
+const getAllSpaces = asyncHandler (async (req, res) => {
+    const spaces = await Space.find().populate('user').populate('spaceusers')
+    res.status(200).json(spaces)
+})
+
+// @desc    Get space booking by id inc creator & spaceuser info 
+// @route   GET /api/spacebookings/:id
+// @access  Public
+
+const getSpaceSingle = asyncHandler (async (req, res) => {
+    const space = await Space.findById(req.params.id).populate('user').populate('spaceusers')
+    res.status(200).json(space)
 })
 
 // @desc    Create space
@@ -42,6 +60,10 @@ const createSpace = asyncHandler (async (req, res) => {
         res.status(400).json
         throw new Error('Please add a spacetype field')
     }
+    if(!req.body.spaceimage) {
+        res.status(400).json
+        throw new Error('Please add an image of the space')
+    }
 
     const space = await Space.create({   
         user: req.user.id,
@@ -53,6 +75,7 @@ const createSpace = asyncHandler (async (req, res) => {
         capacity: req.body.capacity,
         spacetype: req.body.spacetype,
         spaceusers: req.body.spaceusers,
+        spaceimage: req.body.spaceimage,
     })
     res.status(200).json(space)
 })
@@ -69,16 +92,14 @@ const updateSpace = asyncHandler (async (req, res) => {
         throw new Error ('Space not found')
     }
 
-    const user = await User.findById(req.user.id)
-
     // Check for user
-    if(!user) {
+    if(!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
 
     // Make sure the logged in user matches the space user 
-    if(space.user.toString() !== user.id) {
+    if(space.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
@@ -100,16 +121,14 @@ const deleteSpace = asyncHandler (async (req, res) => {
         throw new Error ('Space not found')
     }
 
-    const user = await User.findById(req.user.id)
-
     // Check for user
-    if(!user) {
+    if(!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
 
     // Make sure the logged in user matches the space user 
-    if(space.user.toString() !== user.id) {
+    if(space.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
@@ -126,4 +145,27 @@ module.exports = {
     createSpace,
     updateSpace,
     deleteSpace,
+    getAllSpaces,
+    getSpaceSingle,
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

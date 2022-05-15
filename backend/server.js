@@ -1,8 +1,11 @@
+// Call cors
+const cors = require('cors')
 // Call express framework 
 const express = require('express')
 const colors = require('colors')
 // dotenv environment variables calling .config
 const dotenv = require('dotenv').config()
+
 // Call error middleware for development mode 
 const { errorHandler } = require('./middleware/errorMiddleware')
 // Call mongo atlas database 
@@ -14,6 +17,10 @@ const { limiter, sessionLimiter } = require('./middleware/rateLimiterMiddleware'
 
 // Connect to the database
 connectDB()
+
+// Cors whitelist origins
+const app = express()
+app.use(cors({ origin: [...process.env.CORS_ORIGIN.split(", ")], }))
 
 // Initialize express 
 const server = express()
