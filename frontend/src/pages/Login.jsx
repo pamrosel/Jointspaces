@@ -44,15 +44,14 @@ const Login = () => {
         (state) => state.auth)
 
     useEffect(() => {
-        if(isError) {
-            toast.error(message)
-        }
 
         // ifSuccess or user is logged in 
         if(isSuccess || user){
             navigate('/')
         }
-
+        if(isError) {
+            toast.error(message)
+        }
         dispatch(reset())
 
         }, [user, isError, isSuccess, message, navigate, dispatch]

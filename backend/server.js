@@ -18,12 +18,11 @@ const { limiter, sessionLimiter } = require('./middleware/rateLimiterMiddleware'
 // Connect to the database
 connectDB()
 
-// Cors whitelist origins
-const app = express()
-app.use(cors({ origin: [...process.env.CORS_ORIGIN.split(", ")], }))
-
 // Initialize express 
 const server = express()
+
+// Cors whitelist origins
+server.use(cors({ origin: [...process.env.CORS_ORIGIN.split(", ")], }))
 
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
