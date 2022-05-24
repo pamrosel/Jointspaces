@@ -18,17 +18,13 @@ function Dashboard() {
   useEffect(() => {
     if(isError) {
       console.log(message)
-    }
-
-    // If no user logged in, redirect to login page
-    if(!user) {
-      navigate('/login')
-    }
-
-    dispatch(getSpaces())
-
-    return () => {
+    } else {
       dispatch(reset())
+    }
+    if(user) {
+      dispatch(getSpaces())
+    } else {
+      navigate('/login')
     }
   }, [user, navigate, isError, message, dispatch])
 
