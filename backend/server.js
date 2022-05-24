@@ -1,3 +1,4 @@
+const path = require('path') 
 // Call cors
 const cors = require('cors')
 // Call express framework 
@@ -38,6 +39,16 @@ server.use('/api', require('./routes/bookingRoutes'))
 
 // Link up Requests controller, prefixing route url with /api
 server.use('/api', require('./routes/requestRoutes'))
+
+// Serve Frontend 
+if(process.env.NODE_ENV === 'production'){
+    console.log('in production')
+    server.use(express.static(path.join(__dirname, '../frontend/build')))
+    
+    server.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')))
+} else {
+    server.get('/', (req, res) => res.send('Please set to production'))
+}
 
 // Call error handling middleware
 server.use(errorHandler)
