@@ -1,7 +1,12 @@
+// Call jwt functionality
 const jwt = require('jsonwebtoken')
+// Call asyncHandler for async CRUD functions 
 const asyncHandler = require('express-async-handler')
+// Call user model
 const User = require('../models/userModel')
 
+// Create protect function to use on private routes using jwt tokens
+// to create stateful user sessions 
 const protect = asyncHandler(async (req, res, next) => {
     let token
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const bookingSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -6,10 +7,10 @@ const bookingSchema = mongoose.Schema({
         // References User Model to associate with a Booking 
         ref: 'User'
     },
-    spacename: {
-        type: String,
-        required: [true, 'Please add a spacename'],
-        maxlength: [40, 'Spacename cannot be more than 40 chars']
+    spaceid: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'Please add a spaceid'],
+        ref: 'Space'
     },
     bookingstart: {
         type: Date,
@@ -24,5 +25,7 @@ const bookingSchema = mongoose.Schema({
     timestamps: true,
     }
 )
+
+bookingSchema.index({ spaceid: 1, bookingstart: 1}, {unique: true, dropDups: true})
 
 module.exports = mongoose.model('Booking', bookingSchema)

@@ -1,6 +1,7 @@
-// Logging Feature
+// Call logs model 
 const Logs = require('../models/logsModel')
 
+// Create logger function to record HTTP requests  
 const logger = async (req, res, next) => {
 
     const log = await Logs.create({

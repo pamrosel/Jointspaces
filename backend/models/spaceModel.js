@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const spaceSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -9,17 +10,19 @@ const spaceSchema = mongoose.Schema({
     spacename: {
         type: String,
         required: [true, 'Please add a space name'],
-        maxlength: [40, 'Spacename cannot be more than 40 chars']
+        maxlength: [40, 'Spacename cannot be more than 40 chars'],
+        unique: true,
+        index: true
     },
     description: {
         type: String,
         required: [true, 'Please add a space description'],
-        maxlength: [1000, 'Description cannot be more than 1000 characters']
+        maxlength: [5000, 'Description cannot be more than 5000 characters']
     }, 
     rules: {
         type: String,
         required: false,
-        maxlength: [1000, 'Rules cannot be more than 1000 characters']
+        maxlength: [5000, 'Rules cannot be more than 5000 characters']
     }, 
     address: {
         type: String,
@@ -39,14 +42,18 @@ const spaceSchema = mongoose.Schema({
         type: String,
         enum: ['single', 'multi'],
         default: 'single',
-        required: [true, 'Please choose a space type'],
+        required: [true, 'Please choose a space type']
     },
     spaceusers: [{
         type: String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'User',
-        required: false
-    }]
+        required: [true, 'Please add spaceusers'],
+        ref: 'User'
+    }],
+    spaceimage: {
+        type: String,
+        required: [true, 'Please add an image of the space'],
+        maxlength: [300, 'Address cannot be more than 300 characters']
+    }
 }, 
     {
     timestamps: true,

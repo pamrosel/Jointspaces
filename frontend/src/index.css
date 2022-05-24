@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+    --cream: #e6e1c5;
+    --plum: #493843;
+    --pink: #ffbcd5;
+    --green: #61988e;
+    --dmmono: 'DM Mono', monospace;
+}
+
+.light, .light #logo, .dark #offcanvasRight {
+    background-color: var(--cream);
+    color: var(--plum);
+}
+
+.dark, .dark #logo, .light #offcanvasRight {
+    background-color: var(--plum);
+    color: var(--cream);
+}
+
+body {
+    font-family: var(--dmmono);
+    margin-top: 74px;
+} 
+
+#logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion-button:not(.collapsed){
+    --plum: #493843 !important;
+}
+
+
+
+.accordion-button:not(.collapsed), .accordion-button:not(.collapsed)::after {
+    color: #493843 !important;
+    background-image: none !important;
+  }
+
+#darkmode_btn {
+    border: solid 2px var(--cream);
+}
+
+#darkmode_btn.clicked {
+    border: solid 2px var(--plum);
+}
+
+#darkmode_btn.clicked::after {
+    content: " off";
+}
+
+#darkmode_btn::after {
+    content: " on";
+}
+
+input, textarea {
+    color: var(--plum)
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.15em;
+}
+
