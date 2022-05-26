@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux'
 import { createSpace } from '../features/spaces/spaceSlice'
-import { FaPlus } from 'react-icons/fa'
-
+import { FaPlus, FaPen, FaImage, FaHouseUser, FaListAlt, FaMapMarkerAlt, FaMapMarker, FaUserPlus, FaRegCalendarAlt, FaPlusCircle } from 'react-icons/fa'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 const formClassName = "container mx-auto grid md:grid-cols-2 gap-1"
 const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white"
 const errorClassName = "text-red md:col-span-2 pl-2.5"
+const formiconClassName = "absolute right-3 opacity-40 -bottom-9 z-0"
 
 
 const SpaceForm = () => {
@@ -69,7 +69,7 @@ const SpaceForm = () => {
     return (
         <section>
             <form className={formClassName} onSubmit={formik.handleSubmit}>
-                <label htmlFor="spacename">Space Name 
+                <label htmlFor="spacename" className='relative'><FaHouseUser className={formiconClassName}/>Space Name 
                 {formik.touched.spacename && formik.errors.spacename ? (
                     <span className={errorClassName}>{formik.errors.spacename}</span>
                 ) : null}
@@ -85,7 +85,7 @@ const SpaceForm = () => {
                     value={formik.values.spacename}
                 />
                 
-                <label htmlFor="description">Description
+                <label htmlFor="description" className='relative'><FaPen className={formiconClassName}/>Description
                 {formik.touched.description && formik.errors.description ? (
                     <span className={errorClassName}>{formik.errors.description}</span>
                 ) : null}
@@ -101,7 +101,7 @@ const SpaceForm = () => {
                     value={formik.values.description}
                 />
             
-                <label htmlFor="rules">Rules
+                <label htmlFor="rules" className='relative'><FaListAlt className={formiconClassName}/>Rules
                 {formik.touched.rules && formik.errors.rules ? (
                     <span className={errorClassName}>{formik.errors.rules}</span>
                 ) : null}
@@ -117,7 +117,7 @@ const SpaceForm = () => {
                     value={formik.values.rules}
                 />
 
-                <label htmlFor="address">Address
+                <label htmlFor="address" className='relative'><FaMapMarkerAlt className={formiconClassName}/>Address
                 {formik.touched.address && formik.errors.address ? (
                     <span className={errorClassName}>{formik.errors.address}</span>
                 ) : null}
@@ -133,7 +133,7 @@ const SpaceForm = () => {
                     value={formik.values.address}
                 />
 
-                <label htmlFor="suburb">Suburb
+                <label htmlFor="suburb" className='relative'><FaMapMarker className={formiconClassName}/>Suburb 
                 {formik.touched.suburb && formik.errors.suburb ? (
                     <span className={errorClassName}>{formik.errors.suburb}</span>
                 ) : null}
@@ -149,7 +149,7 @@ const SpaceForm = () => {
                     value={formik.values.suburb}
                 />
                 
-                <label htmlFor="capacity">Capacity
+                <label htmlFor="capacity" className='relative'><FaUserPlus className={formiconClassName}/>Capacity
                 {formik.touched.capacity && formik.errors.capacity ? (
                     <span className={errorClassName}>{formik.errors.capacity}</span>
                 ) : null}
@@ -165,7 +165,7 @@ const SpaceForm = () => {
                     value={formik.values.capacity}
                 />
                 
-                <label htmlFor="spacetype">Single/Multi
+                <label htmlFor="spacetype" className='relative'><FaRegCalendarAlt className={formiconClassName}/>Single/Multi
                 {formik.touched.spacetype && formik.errors.spacetype ? (
                     <span className={errorClassName}>{formik.errors.spacetype}</span>
                 ) : null}
@@ -181,7 +181,7 @@ const SpaceForm = () => {
                     value={formik.values.spacetype}
                 />
 
-                <label htmlFor="spaceusers">Invite Users
+                <label htmlFor="spaceusers" className='relative'><FaPlusCircle className={formiconClassName}/>Invite Users
                 {formik.touched.spaceusers && formik.errors.spaceusers ? (
                     <span className={errorClassName}>{formik.errors.spaceusers}</span>
                 ) : null}
@@ -205,7 +205,7 @@ const SpaceForm = () => {
                     Add User
                 </button>
 
-                <label htmlFor="spaceimage">Image Path
+                <label htmlFor="spaceimage" className='relative'><FaImage className={formiconClassName}/>Image Path
                 {formik.touched.spaceimage && formik.errors.spaceimage ? (
                     <span className={errorClassName}>{formik.errors.spaceimage}</span>
                 ) : null}
