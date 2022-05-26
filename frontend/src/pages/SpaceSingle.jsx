@@ -23,46 +23,18 @@ function SingleSpace() {
     return (
           <article>
 
-{/* {[space].map((item, _id) => 
-
-<div key={item._id}>
-  <h2>: {item.spacename} </h2>
-  <h2>{JSON.stringify(item.spaceusers[0])}</h2>
-
-
-  {item.spaceusers.map((spaceuser, _id) => 
-  <h2 key={spaceuser._id}>{spaceuser.name} {spaceuser._id}</h2>)}
-
-
-  
-</div>
-
-)} */}
-
-
-
-
             <img className='rounded-t-lg' src={space.spaceimage} alt={space.spacename}/>
             <div className='bg-white rounded-b-lg p-4 mb-6 text-plum'>
               <h1>{space.spacename}</h1>
-              <h3>{space.address}, {space.suburb}</h3>
-              
-
-
-              </div>
-
-         
-            
-
+              <h3>{space.address}, {space.suburb}</h3>            
+            </div>
             
             <div className="accordion accordion-flush text-plum" id="accordionFlushExample">
-              
               <div className="accordion-item border-l-0 border-r-0 border-t-0 rounded-none bg-white border border-gray-200">
                 <h2 className="accordion-header mb-0" id="flush-headingOne">
                   <button 
                     className="accordion-button relative flex items-center w-full py-4 px-5 bg-white border-0 rounded-none transition" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                    aria-expanded="false" aria-controls="flush-collapseOne"
-                  >
+                    aria-expanded="false" aria-controls="flush-collapseOne">
                     About this Space
                   </button>
                 </h2>
