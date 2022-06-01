@@ -40,6 +40,9 @@ server.use('/api', require('./routes/bookingRoutes'))
 // Link up Requests controller, prefixing route url with /api
 server.use('/api', require('./routes/requestRoutes'))
 
+// Link up Logs controller, prefixing route url with /api
+server.use('/api', require('./routes/logRoutes'))
+
 // Serve Frontend 
 if(process.env.NODE_ENV === 'production'){
     console.log('in production')

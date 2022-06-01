@@ -221,7 +221,7 @@ const SpaceForm = () => {
                     value={formik.values.spaceimage}
                 />
 
-                <button className='bg-pinky rounded-lg p-5 mb-5 text-plum' type="submit"><h2>Share my Jointspace</h2></button>
+                <button className='bg-pinky rounded-lg p-5 mb-5' type="submit"><h2>Share my Jointspace</h2></button>
             </form>
         </section>
     )

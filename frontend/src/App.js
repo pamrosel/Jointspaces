@@ -16,6 +16,10 @@ import SpaceBookings from './pages/SpaceBookings'
 
 import Home from './pages/Home'
 import Post from './pages/Post'
+import AdminDashboard from './pages/AdminDashboard'
+import ActivityLog from './pages/ActivityLog'
+import Users from './pages/Users'
+import CreateAdmin from './pages/CreateAdmin'
 
 function App() {
 
@@ -30,10 +34,12 @@ function App() {
               <Route path='/loggedout' element={<Loggedout />} />
               <Route path='/register' element={<Register />} />
               <Route path='/createspace' element={<Createspace />} />
-
+              <Route path='/admin' element={<AdminDashboard />} />
+              <Route path='/activitylog' element={<ActivityLog />} />
+              <Route path='/users' element={<Users />} />
+              <Route path='/createadmin' element={<CreateAdmin />} />
               <Route path='/home' element={<Home />} />
               <Route path="/post/:id" element={<Post />} />
-
               <Route path='/space' element={<Spaces />} />
               <Route path="/space/:spaceid" element={<SpaceSingle />} />
               <Route path="/bookings/:bookingfromspaceid" element={<SpaceBookings />} />

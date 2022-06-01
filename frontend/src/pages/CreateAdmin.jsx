@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -11,7 +11,7 @@ const errorClassName = "text-red md:col-span-2 pl-2.5"
 const formClassName = "container mx-auto grid md:grid-cols-2 gap-1"
 const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white"
 
-const Register = () => {
+const CreateAdmin = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -47,10 +47,11 @@ const Register = () => {
                     ['name', values.name], 
                     ['email', values.email],
                     ['password', values.password],
-                    ['role', 'user']
+                    ['role', 'admin']
                 ]
 
                 const registerData = Object.fromEntries(userData)
+                console.log(registerData)
                 dispatch(register(registerData))
         },
     })
@@ -66,8 +67,8 @@ const Register = () => {
         }
 
         // ifSuccess or user is logged in 
-        if(isSuccess || user){
-            navigate('/space')
+        if(isSuccess){
+            navigate('/admin')
         }
 
         dispatch(reset())
@@ -83,7 +84,7 @@ const Register = () => {
         <>
             <section className='mb-5 pr-5'>
                 <h1>
-                    Create your account.
+                    Create a new Admin account.
                 </h1>
             </section>
         
@@ -98,7 +99,7 @@ const Register = () => {
                         className={inputClassName}
                         id="name" 
                         name="name" 
-                        placeholder="Enter your username"
+                        placeholder="Admin username"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.name}
@@ -112,7 +113,7 @@ const Register = () => {
                         className={inputClassName}
                         id="email" 
                         name="email" 
-                        placeholder="Enter your email" 
+                        placeholder="Admin email" 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
@@ -126,7 +127,7 @@ const Register = () => {
                         className={inputClassName}
                         id="password" 
                         name="password" 
-                        placeholder="Enter password" 
+                        placeholder="Admin password" 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.password}
@@ -147,144 +148,12 @@ const Register = () => {
                     />
 
                     <button className='bg-greeny rounded-lg p-5 mb-5' type="submit">
-                        <h2>Register</h2>
+                        <h2>Create Admin User</h2>
                     </button>
                 </form>
-            </section>
-
-            <section>
-                <h3 className='text-center'><Link className='underline' to='/login'>I have an account</Link></h3>
             </section>
         </>
     )
 }
 
-export default Register
-
-
-// import { useState, useEffect } from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { Link, useNavigate } from 'react-router-dom'
-// import { toast } from 'react-toastify'
-// import { register, reset } from '../features/auth/authSlice'
-// import Spinner from '../components/Spinner'
-
-// const formClassName = "container mx-auto grid md:grid-cols-2 gap-1"
-// const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white"
-
-// function Register() {
-//     const [formData, setFormData] = useState({
-//         name: '',
-//         email: '', 
-//         password: '',
-//         password2: '',
-//     })
-  
-//     const {name, email, password, password2} = formData
-
-//     const navigate = useNavigate()
-//     const dispatch = useDispatch()
-
-//     const { user, isLoading, isError, isSuccess, message } = useSelector(
-//         // react-redux gets state from global 'auth' state   
-//         (state) => state.auth
-//     )
-
-//     useEffect(() => {
-//         if(isError) {
-//             toast.error(message)
-//         }
-
-//         // ifSuccess or user is logged in 
-//         if(isSuccess || user){
-//             // navigate('/')
-//             console.log('user created')
-//         }
-
-//         dispatch(reset())
-//     }, [user, isError, isSuccess, message, navigate, dispatch])
-
-//     const onChange = (e) => {
-//         setFormData((prevState) => ({
-//             ...prevState,
-//             [e.target.name]: e.target.value,
-//         }))
-//     }
-
-//     const onSubmit = (e) => {
-//         e.preventDefault()
-
-//         if(password !== password2) {
-//             toast.error('Passwords do not match')
-//         } else {
-//             const userData = {
-//                 name, email, password,
-//             }
-
-//             console.log(userData)
-//             dispatch(register(userData))
-//         }
-//     }
-
-//     if(isLoading) {
-//         return <Spinner />
-//     }
-
-//     return (
-//         <>
-//             <section className='mb-5 pr-5'>
-//                 <h1>
-//                     Create your account.
-//                 </h1>
-//             </section>
-        
-//             <section>
-//                 <form className={formClassName} onSubmit={onSubmit}>
-//                     <input 
-//                         type="text" 
-//                         className={inputClassName}
-//                         id="name" 
-//                         name="name" 
-//                         value={name} 
-//                         placeholder="Enter your username" 
-//                         onChange={onChange}
-//                     />
-//                     <input 
-//                         type="text" 
-//                         className={inputClassName}
-//                         id="email" 
-//                         name="email" 
-//                         value={email} 
-//                         placeholder="Enter your email" 
-//                         onChange={onChange}
-//                     />
-//                     <input 
-//                         type="password" 
-//                         className={inputClassName}
-//                         id="password" 
-//                         name="password" 
-//                         value={password} 
-//                         placeholder="Enter password" 
-//                         onChange={onChange}
-//                     />
-//                     <input 
-//                         type="password" 
-//                         className={inputClassName}
-//                         id="password2" 
-//                         name="password2" 
-//                         value={password2} 
-//                         placeholder="Confirm password" 
-//                         onChange={onChange}
-//                     />
-//                     <button className='bg-greeny rounded-lg p-5 mb-5' type="submit"><h2>Register</h2></button>
-//                 </form>
-//             </section>
-
-//             <section>
-//                 <h3 className='text-center'><Link className='underline' to='/login'>I have an account</Link></h3>
-//             </section>
-//         </>
-//     )
-// }
-
-// export default Register
+export default CreateAdmin

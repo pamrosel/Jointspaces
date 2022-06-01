@@ -3,18 +3,19 @@ const express = require('express')
 // Create router to define API routes in this file
 const router = express.Router()
 
-// Import following functions from bookingContoller
+// Import following functions from userController
 const { 
-    registerUser, 
+    registerUser,
     loginUser,
-    getUserData
+    getUserData,
+    getUsers,
 } = require('../controllers/userController')
 
 // Call middleware
 const { protect } = require('../middleware/authMiddleware')
 const { logger } = require('../middleware/loggingMiddleware')
 
-// Create POST api route to register a user
+// Create POST api route to register a user/admin
 router.post('/users', registerUser)
 
 // Create POST api route to login a user
@@ -22,6 +23,9 @@ router.post('/users/login', loginUser)
 
 // Create GET api route display user data
 router.get('/users/me', protect, logger, getUserData)
+
+// Create GET api route display all users
+router.get('/allusers', getUsers)
 
 // Export the router
 module.exports = router 

@@ -12,6 +12,18 @@
     --dmmono: 'DM Mono', monospace;
 }
 
+.dark .bg-greyish {
+    background-color: #604d5e;
+}
+
+.dark .bg-greeny {
+    background-color: #257569;
+}
+
+.dark .bg-pinky {
+    background-color: #d06588;
+}
+
 .light, .light #logo, .dark #offcanvasRight {
     background-color: var(--cream);
     color: var(--plum);

@@ -7,7 +7,7 @@ const User = require('../models/userModel')
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, email, password, role } = req.body
     
     if(!name || !email || !password) {
         res.status(400)
@@ -30,7 +30,8 @@ const registerUser = asyncHandler(async (req, res) => {
     const user = await User.create({
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        role
     })
 
     // Check user created
@@ -39,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name, 
             email: user.email,
+            role: user.role,
             token: generateToken(user._id)
         })
     } else {
@@ -63,6 +65,7 @@ const loginUser = asyncHandler(async(req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
+            role: user.role,
             token: generateToken(user._id)
         })
     } else {
@@ -79,6 +82,14 @@ const getUserData = asyncHandler(async(req, res) => {
     res.status(200).json(req.user)
 })
 
+// @desc    GET all users 
+// @route   GET /api/allusers
+// @access  Public
+const getUsers = asyncHandler(async(req, res) => {
+    const users = await User.find()
+    res.status(200).json(users)
+})
+
 // Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -90,4 +101,5 @@ module.exports = {
     registerUser,
     loginUser,
     getUserData,
+    getUsers
 }
