@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { register, reset } from '../features/auth/authSlice'
+import { registeradmin, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -52,7 +52,7 @@ const CreateAdmin = () => {
 
                 const registerData = Object.fromEntries(userData)
                 console.log(registerData)
-                dispatch(register(registerData))
+                dispatch(registeradmin(registerData))
         },
     })
 
@@ -68,7 +68,8 @@ const CreateAdmin = () => {
 
         // ifSuccess or user is logged in 
         if(isSuccess){
-            navigate('/admin')
+            toast.success('Success! Admin created')
+            navigate('/users')
         }
 
         dispatch(reset())
@@ -84,7 +85,7 @@ const CreateAdmin = () => {
         <>
             <section className='mb-5 pr-5'>
                 <h1>
-                    Create a new Admin account.
+                    Create a new Admin user.
                 </h1>
             </section>
         
@@ -147,7 +148,7 @@ const CreateAdmin = () => {
                         value={formik.values.password2}
                     />
 
-                    <button className='bg-greeny rounded-lg p-5 mb-5' type="submit">
+                    <button className='bg-pinky rounded-lg p-5 mb-5' type="submit">
                         <h2>Create Admin User</h2>
                     </button>
                 </form>

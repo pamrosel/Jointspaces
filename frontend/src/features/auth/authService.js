@@ -14,6 +14,18 @@ const register = async (userData) => {
     return response.data
 }
 
+// Register admin 
+const registeradmin = async (userData) => {
+    const response = await axios.post(API_URL + 'admin', userData)
+
+    if(response.data) {
+        console.log('register admin response data')
+        // localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data
+}
+
 // Login user 
 const login = async (userData) => {
     const response = await axios.post(API_URL + 'login', userData)
@@ -31,7 +43,7 @@ const logout = () => {
 }
 
 const authService = {
-    register, login, logout,
+    register, registeradmin, login, logout,
 }
 
 export default authService

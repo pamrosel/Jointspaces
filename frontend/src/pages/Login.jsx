@@ -47,7 +47,7 @@ const Login = () => {
 
         // ifSuccess or user is logged in 
         if(isSuccess || user){
-            navigate('/')
+            navigate('/space')
         }
         if(isError) {
             toast.error(message)

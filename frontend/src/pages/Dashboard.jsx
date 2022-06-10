@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { FaPlus } from 'react-icons/fa'
 import SpaceItem from '../components/SpaceItem'
 import Spinner from '../components/Spinner'
 import { getSpaces, reset } from '../features/spaces/spaceSlice'
+import CreateJointspaceButton from '../components/CreateJointspaceButton'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -50,15 +50,7 @@ function Dashboard() {
         )}
       </section>
 
-      <section>
-        <button className='outline-dashed outline-2 rounded-lg w-full p-4 mb-5'>
-          <span className='inline-block pr-4'><FaPlus /></span>
-          <Link to='/createspace'> 
-            <h2 className="inline-block">Create a JointSpace</h2>
-          </Link>
-        </button>
-      </section>
-
+      <CreateJointspaceButton />
     </>
   )
 }

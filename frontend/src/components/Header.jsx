@@ -1,4 +1,4 @@
-import { FaAsterisk, FaTimes } from 'react-icons/fa'
+import { FaAsterisk, FaTimes, FaQuestionCircle } from 'react-icons/fa'
 import SignIn from '../components/SignIn'
 import Darkmode from '../components/Darkmode'
 import { Link } from "react-router-dom";
@@ -28,17 +28,20 @@ function Header() {
                   <>
                     <Link to="/space">
                     <h3 data-bs-dismiss="offcanvas"  aria-label="Close">
-                      Shared Spaces
+                      Shared Jointspaces
                     </h3>
                     </Link>
                     <Link to="/">
                     <h3 data-bs-dismiss="offcanvas"  aria-label="Close">
-                      My Created Spaces
+                      Created Jointspaces
                     </h3>
                     </Link>
                     <h3>My Bookings</h3>
                     <Darkmode />
                     <Logout />
+                    <button className='btn block mt-5'>
+                      <FaQuestionCircle /> Help
+                    </button>
                   </>
               ) : (
                 <>

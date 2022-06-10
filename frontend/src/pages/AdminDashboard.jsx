@@ -16,7 +16,7 @@ function AdminDashboard() {
                 <button className='rounded-lg w-full p-4 mb-5 bg-pinky'>
                     <span className='inline-block pr-4'><FaUserPlus /></span>
                     <Link to='/createadmin'> 
-                        <h2 className="inline-block">Create User</h2>
+                        <h2 className="inline-block">Create Admin</h2>
                     </Link>
                 </button>
 

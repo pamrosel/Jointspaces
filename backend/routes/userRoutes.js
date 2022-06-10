@@ -9,14 +9,18 @@ const {
     loginUser,
     getUserData,
     getUsers,
+    registerAdmin,
 } = require('../controllers/userController')
 
 // Call middleware
 const { protect } = require('../middleware/authMiddleware')
 const { logger } = require('../middleware/loggingMiddleware')
 
-// Create POST api route to register a user/admin
+// Create POST api route to register a user
 router.post('/users', registerUser)
+
+// Create POST api route to register an admin
+router.post('/users/admin', registerAdmin)
 
 // Create POST api route to login a user
 router.post('/users/login', loginUser)

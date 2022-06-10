@@ -89,7 +89,7 @@ const BookingForm = () => {
                     value={formik.values.spaceid}
                 />
 
-                <button className='bg-greeny rounded-lg p-5 mb-5 text-plum' type="submit"><h2>Make a Booking</h2></button>
+                <button className='bg-greeny rounded-lg p-5 mb-5' type="submit"><h2>Make a Booking</h2></button>
             </form>
         </section>
     )
