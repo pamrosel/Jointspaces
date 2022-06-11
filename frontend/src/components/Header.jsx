@@ -1,4 +1,4 @@
-import { FaAsterisk, FaTimes } from 'react-icons/fa'
+import { FaAsterisk, FaTimes, FaQuestionCircle } from 'react-icons/fa'
 import SignIn from '../components/SignIn'
 import Darkmode from '../components/Darkmode'
 import { Link } from "react-router-dom";
@@ -13,7 +13,9 @@ function Header() {
     <>
       <header className='header'>
           <div id="logo" className='px-5'>
-              <h1 className='leading-loose'>Jointspaces</h1>
+              <Link to="/space">
+                <h1 className='leading-loose'>Jointspaces</h1>
+              </Link>
               <span className='pt-5 text-2xl'><a className=" transition duration-150 ease-in-out" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><FaAsterisk /></a></span>
           </div>
       </header>
@@ -27,17 +29,26 @@ function Header() {
           { user ? (
                   <>
                     <Link to="/space">
-                    <h3 data-bs-dismiss="offcanvas"  aria-label="Close">
-                      Shared Spaces
-                    </h3>
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <h3>Shared Jointspaces</h3>
+                      </button>
                     </Link>
                     <Link to="/">
-                    <h3 data-bs-dismiss="offcanvas"  aria-label="Close">
-                      My Created Spaces
-                    </h3>
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <h3>Created Jointspaces</h3>
+                      </button>
                     </Link>
-                    <h3>My Bookings</h3>
+                    <button className='border-2 rounded-lg p-3 mb-5 w-full'>
+                        <h3>My Bookings</h3>
+                      </button>
                     <Darkmode />
+                    <button className='border-2 rounded-lg p-3 mb-5 w-full'>
+                      <Link to="/help" data-bs-dismiss="offcanvas"  aria-label="Close">
+                        <h3>
+                          <FaQuestionCircle className='inline'/> Help
+                        </h3>
+                      </Link>
+                    </button>
                     <Logout />
                   </>
               ) : (

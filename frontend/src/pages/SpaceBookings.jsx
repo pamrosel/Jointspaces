@@ -63,7 +63,7 @@ function SpaceBookings() {
         <h1 className="mb-5">Upcoming Bookings at {space.spacename}:</h1>
 
         {booking.map((item, _id) => 
-          <article key={item._id} className='bg-pinky rounded-lg p-4 mb-6 text-plum'>
+          <article key={item._id} className='bg-pinky rounded-lg p-4 mb-6'>
              <div>User: {item.user.name}</div>
             <div>booking start: {item.bookingstart}</div>
             <div>booking end: {item.bookingend}</div> 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -15,7 +15,6 @@ const Register = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [loginvalues, SetLoginvalues] = useState();
 
     const formik = useFormik({
         initialValues: {
@@ -47,7 +46,8 @@ const Register = () => {
                 const userData = [
                     ['name', values.name], 
                     ['email', values.email],
-                    ['password', values.password]
+                    ['password', values.password],
+                    ['role', 'user']
                 ]
 
                 const registerData = Object.fromEntries(userData)

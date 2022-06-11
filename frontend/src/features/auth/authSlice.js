@@ -27,6 +27,20 @@ export const register = createAsyncThunk('auth/register',
         }
 })
 
+// Register admin 
+export const registeradmin = createAsyncThunk('auth/registeradmin', 
+    async(user, thunkAPI) => {
+        try {
+            console.log('hey register admin slice')
+            return await authService.registeradmin(user)
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) 
+            || error.message
+            || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+})
+
 // Login user 
 export const login = createAsyncThunk('auth/login', async(user, thunkAPI) => {
     try {
@@ -71,6 +85,17 @@ export const authSlice = createSlice ({
                 state.isError = true
                 state.message = action.payload
                 state.user = null
+            })
+            .addCase(registeradmin.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(registeradmin.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+            })
+            .addCase(registeradmin.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
             })
             .addCase(login.pending, (state) => {
                 state.isLoading = true
