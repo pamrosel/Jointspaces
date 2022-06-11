@@ -20,6 +20,8 @@ import AdminDashboard from './pages/AdminDashboard'
 import ActivityLog from './pages/ActivityLog'
 import Users from './pages/Users'
 import CreateAdmin from './pages/CreateAdmin'
+import Help from './pages/Help'
+import HelpMakeBooking from './pages/HelpMakeBooking'
 
 function App() {
 
@@ -43,6 +45,8 @@ function App() {
               <Route path='/space' element={<Spaces />} />
               <Route path="/space/:spaceid" element={<SpaceSingle />} />
               <Route path="/bookings/:bookingfromspaceid" element={<SpaceBookings />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/help/makeabooking" element={<HelpMakeBooking />} />
             </Routes>
         </div>
       </Router>

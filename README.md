@@ -4,8 +4,7 @@ Year Created: 2022
 
 ---
 
-
-Application Description:
+APPLICATION DESCRIPTION
 This is a space sharing app, that allows users to make their own spaces available for sharing across trusted networks of friends, family and peers alike. 
 
 To visit the deployed application on Heroku:
@@ -16,8 +15,7 @@ To assist marking UX2 criteria please refer to application screenshot documentat
 
 ---
 
-
-Development Stack
+DEVELOPMENT STACK
 
 Backend: 
 - Express.js server
@@ -37,8 +35,7 @@ Third Party Dependencies:
 
 ---
 
-
-Local Setup 
+LOCAL SETUP
 Instructions 
 1. Unzip folder 'mernjointspaces'
 2. Open 'mernjointspaces' folder in vscode, with this as your root folder
@@ -55,8 +52,7 @@ To run the application locally in development
 
 ---
 
-
-User Login Credentials
+USER LOGIN CREDENTIALS 
 
 For demonstrative purposes you can use the following: 
 - email: pamrosel.is@gmail.com

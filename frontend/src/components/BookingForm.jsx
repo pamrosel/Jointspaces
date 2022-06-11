@@ -21,7 +21,7 @@ const BookingForm = () => {
         initialValues: {
             bookingstart: "",
             bookingend: "",
-            spaceid:""
+            spaceid: ""
         },
 
         validationSchema: Yup.object({

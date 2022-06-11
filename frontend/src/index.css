@@ -24,6 +24,10 @@
     background-color: #d06588;
 }
 
+.dark .bg-orangey {
+    background-color: #ef7e29;
+}
+
 .light, .light #logo, .dark #offcanvasRight {
     background-color: var(--cream);
     color: var(--plum);
@@ -47,6 +51,10 @@ body {
     display: flex;
     justify-content: space-between;
     z-index: 1;
+}
+
+#darkMode {
+    width: 100%;
 }
 
 .accordion-button:not(.collapsed){
