@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import BookingForm from '../components/BookingForm'
 
 function SpaceBookings() {
     const { bookingfromspaceid } = useParams();
-    
-    let navigate = useNavigate();
 
     const [space, SetSpace] = useState([]);
     useEffect(() => {
@@ -20,7 +18,7 @@ function SpaceBookings() {
             }
         };
         fetch();
-    }, []);
+    }, [bookingfromspaceid]);
 
     const [booking, SetBooking] = useState([]);
     useEffect(() => {
@@ -34,7 +32,7 @@ function SpaceBookings() {
             }
         };
         fetch();
-    }, []);
+    }, [bookingfromspaceid]);
     
     return (
       <>

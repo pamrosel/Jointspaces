@@ -11,7 +11,7 @@ const errorClassName = "text-red md:col-span-2 pl-2.5"
 const formClassName = "container mx-auto grid md:grid-cols-2 gap-1"
 const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white"
 
-const CreateAdmin = () => {
+const CreateUser = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -47,7 +47,7 @@ const CreateAdmin = () => {
                     ['name', values.name], 
                     ['email', values.email],
                     ['password', values.password],
-                    ['role', 'admin']
+                    ['role', 'user']
                 ]
 
                 const registerData = Object.fromEntries(userData)
@@ -68,7 +68,7 @@ const CreateAdmin = () => {
 
         // ifSuccess or user is logged in 
         if(isSuccess){
-            toast.success('Success! Admin created')
+            toast.success('Success! User created')
             navigate('/users')
         }
 
@@ -85,7 +85,7 @@ const CreateAdmin = () => {
         <>
             <section className='mb-5 pr-5'>
                 <h1>
-                    Create a new Admin.
+                    Create a new User.
                 </h1>
             </section>
         
@@ -148,8 +148,8 @@ const CreateAdmin = () => {
                         value={formik.values.password2}
                     />
 
-                    <button className='bg-pinky rounded-lg p-5 mb-5' type="submit">
-                        <h2>Create Admin User</h2>
+                    <button className='bg-orangey rounded-lg p-5 mb-5' type="submit">
+                        <h2>Create User</h2>
                     </button>
                 </form>
             </section>
@@ -157,4 +157,4 @@ const CreateAdmin = () => {
     )
 }
 
-export default CreateAdmin
+export default CreateUser

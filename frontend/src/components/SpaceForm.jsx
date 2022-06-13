@@ -68,9 +68,7 @@ const SpaceForm = () => {
     })
 
     var countBox = 1;
-    var boxName = 0;
-    function addUser(){
-        var boxName="textBox"+countBox
+    function addUser(){ 
         document.getElementById('newfields').innerHTML+='<br/><input type="text" id="spaceusers" class="rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white w-full" name="spaceusers" placeholder="user email" /><br/>'
         countBox += 1;
         console.log(countBox)

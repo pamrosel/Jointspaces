@@ -8,6 +8,7 @@ const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
     user: user ? user : null,
+    users: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -61,7 +62,7 @@ export const logout = createAsyncThunk ('auth/logout', async() => {
 // Delete user
 export const deleteUser = createAsyncThunk(
     'id/delete',
-    async (userData, thunkAPI) => {
+    async (id, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
             return await authService.deleteUser(id, token)
@@ -140,7 +141,7 @@ export const authSlice = createSlice ({
             .addCase(deleteUser.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.bookings = state.user.filter(
+                state.users = state.users.filter(
                     (user) => user._id !== action.payload.id
                 )
             })

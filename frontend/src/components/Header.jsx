@@ -47,13 +47,14 @@ function Header() {
                         <h3>My Bookings</h3>
                       </button>
                     <Darkmode />
-                    <button className='border-2 rounded-lg p-3 mb-5 w-full'>
-                      <Link to="/help" data-bs-dismiss="offcanvas"  aria-label="Close">
+                    <Link to="/help">
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' data-bs-dismiss="offcanvas"  aria-label="Close">
                         <h3>
                           <FaQuestionCircle className='inline'/> Help
                         </h3>
-                      </Link>
-                    </button>
+                      </button>
+                    </Link>
+          
                     <Logout />
                   </>
               ) : (

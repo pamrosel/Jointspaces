@@ -49,12 +49,12 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error('Invalid user data')
     }
     
-})
+    })
 
-// @desc    Register an admin user
-// @route   POST /api/users
-// @access  Public
-const registerAdmin = asyncHandler(async (req, res) => {
+    // @desc    Register an admin user
+    // @route   POST /api/users
+    // @access  Public
+    const registerAdmin = asyncHandler(async (req, res) => {
     const { name, email, password, role } = req.body
     
     if(!name || !email || !password) {
@@ -98,12 +98,12 @@ const registerAdmin = asyncHandler(async (req, res) => {
         throw new Error('Invalid user data')
     }
     
-})
+    })
 
-// @desc    Authenticate a user
-// @route   POST /api/users/login
-// @access  Public
-const loginUser = asyncHandler(async(req, res) => {
+    // @desc    Authenticate a user
+    // @route   POST /api/users/login
+    // @access  Public
+    const loginUser = asyncHandler(async(req, res) => {
     const {email, password} = req.body
 
     // Check for user email
@@ -161,44 +161,12 @@ const deleteUser = asyncHandler (async (req, res) => {
         console.log('user to delete not found')
     }
 
-    const user = await User.findById(req.user)
-    console.log(user.id)
-
-    // Check for user
-    if(user) {
-        res.status(401).json({ message: 'user exists' })
-    }
-
-    if(!user) {
-        res.status(401).json({ message: 'no user' })
-    }
-
     //Can find a user with ID
-    // usertodelete.remove()
-    // res.status(200).json({ id: req.params.id })
-    // console.log( 'user'+ req.params.id +'was deleted')
-
-    // Check for admin
-    // if(!req.user) {
-    //     res.status(401)
-    //     throw new Error('User not found')
-    // }
-
-    // Check for user role
-    // if(req.user.role === 'user') {
-    //     res.status(401)
-    //     // throw new Error('User not an Admin')
-    //     console.log('user not admin')
-    // }
-
-    // Make sure the logged in user matches the space user 
-    // if(space.user.toString() !== req.user.id) {
-    //     res.status(401)
-    //     throw new Error('User not authorized')
-    // }
+    usertodelete.remove()
+    res.status(200).json({ id: req.params.id })
+    console.log( 'user'+ req.params.id +'was deleted')
 
 })
-
 
 module.exports = { 
     registerUser,

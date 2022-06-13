@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { FaQuestionCircle } from 'react-icons/fa'
 
 function SingleSpace() {
     const { spaceid } = useParams();
-    let navigate = useNavigate();
 
     const [space, SetSpace] = useState([]);
     useEffect(() => {
@@ -19,7 +18,7 @@ function SingleSpace() {
             }
         };
         fetch();
-    }, []);
+    }, [spaceid]);
     
     return (
           <article>
