@@ -147,10 +147,64 @@ const generateToken = (id) => {
     })
 }
 
+// @desc    Delete user
+// @route   DELETE /api/allusers/:id
+// @access  
+
+const deleteUser = asyncHandler (async (req, res) => {
+    const usertodelete = await User.findById(req.params.id)
+
+    // Cannot find a user with ID
+    if(!usertodelete) {
+        res.status(404).json({ message: 'no user to delete' })
+        throw new Error ('User to delete not found')
+        console.log('user to delete not found')
+    }
+
+    const user = await User.findById(req.user)
+    console.log(user.id)
+
+    // Check for user
+    if(user) {
+        res.status(401).json({ message: 'user exists' })
+    }
+
+    if(!user) {
+        res.status(401).json({ message: 'no user' })
+    }
+
+    //Can find a user with ID
+    // usertodelete.remove()
+    // res.status(200).json({ id: req.params.id })
+    // console.log( 'user'+ req.params.id +'was deleted')
+
+    // Check for admin
+    // if(!req.user) {
+    //     res.status(401)
+    //     throw new Error('User not found')
+    // }
+
+    // Check for user role
+    // if(req.user.role === 'user') {
+    //     res.status(401)
+    //     // throw new Error('User not an Admin')
+    //     console.log('user not admin')
+    // }
+
+    // Make sure the logged in user matches the space user 
+    // if(space.user.toString() !== req.user.id) {
+    //     res.status(401)
+    //     throw new Error('User not authorized')
+    // }
+
+})
+
+
 module.exports = { 
     registerUser,
     loginUser,
     getUserData,
     getUsers, 
-    registerAdmin
+    registerAdmin, 
+    deleteUser
 }

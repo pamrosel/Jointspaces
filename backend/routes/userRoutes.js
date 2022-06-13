@@ -10,6 +10,7 @@ const {
     getUserData,
     getUsers,
     registerAdmin,
+    deleteUser,
 } = require('../controllers/userController')
 
 // Call middleware
@@ -30,6 +31,9 @@ router.get('/users/me', protect, logger, getUserData)
 
 // Create GET api route display all users
 router.get('/allusers', getUsers)
+
+// Create DELETE api route display all users
+router.delete('/allusers/:id', deleteUser)
 
 // Export the router
 module.exports = router 

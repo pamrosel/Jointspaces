@@ -11,7 +11,7 @@ function SingleSpace() {
     useEffect(() => {
         const fetch = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:3000/api/spacebookings/${spaceid}`)
+                const { data } = await axios.get(`/api/spacebookings/${spaceid}`)
                 SetSpace(data)
                 console.log(data)
             } catch (err) {

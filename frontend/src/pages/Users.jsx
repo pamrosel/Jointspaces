@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Spinner from '../components/Spinner'
 import axios from "axios";
+import { FaTimesCircle } from 'react-icons/fa'
 
 function Users() {
 
@@ -9,7 +9,7 @@ function Users() {
     useEffect(() => {
         async function fetch() {
               try {
-                  const { data } = await axios.get("http://localhost:3000/api/allusers");
+                  const { data } = await axios.get("/api/allusers");
                   setUsers(data);
                   console.log(data);
               } catch (err) {
@@ -27,14 +27,14 @@ function Users() {
 
             <section>
               {users.map((user, _id) => (
-                <article key={user._id} className="bg-greeny rounded-lg mb-8 p-4">
+                <article key={user._id} className="bg-greeny rounded-lg mb-8 p-4 relative">
+                  <div className="absolute -top-2 right-2"><FaTimesCircle className="text-3xl"/></div>
                   <h2 className='mb-2'>Username: {user.name}</h2>
                   <p>ID: {user._id}
                   <br/>Created at: {user.createdAt}
                   <br/>Username: {user.name}
                   <br/>Email: {user.email}
                   <br/>Role: {user.role}
-                  
                   </p>
                 </article>
               ))}

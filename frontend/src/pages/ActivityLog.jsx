@@ -8,7 +8,7 @@ function ActivityLog() {
     useEffect(() => {
         async function fetch() {
               try {
-                  const { data } = await axios.get("http://localhost:3000/api/logs");
+                  const { data } = await axios.get("/api/logs");
                   setLogs(data);
                   console.log(data);
               } catch (err) {

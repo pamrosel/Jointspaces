@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import axios from "axios";
-import CreateJointspaceButton from "../components/CreateJointspaceButton";
 
 function Allspaces() {
   
@@ -12,10 +11,11 @@ function Allspaces() {
   useEffect(() => {
     async function fetch() {
           try {
-              const { data } = await axios.get("http://localhost:3000/api/allspaces");
+              const { data } = await axios.get("/api/allspaces");
               setAllspaces(data);
               console.log(data);
           } catch (err) {
+
               console.error(err);
           }
       }
