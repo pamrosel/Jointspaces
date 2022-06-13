@@ -28,6 +28,11 @@ function Header() {
           
           { user ? (
                   <>
+                    <Link to="/admin">
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <h3>Admin Panel</h3>
+                      </button>
+                    </Link>
                     <Link to="/space">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                         <h3>Shared Jointspaces</h3>
@@ -38,7 +43,7 @@ function Header() {
                         <h3>Created Jointspaces</h3>
                       </button>
                     </Link>
-                    <button className='border-2 rounded-lg p-3 mb-5 w-full'>
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full'>
                         <h3>My Bookings</h3>
                       </button>
                     <Darkmode />

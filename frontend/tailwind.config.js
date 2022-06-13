@@ -11,6 +11,7 @@ module.exports = {
       'greyish': '#bcafbd',
       'red': '#F87171',
       'orangey': '#ffa766',
+      'featuretext': '#25a68e',
     },
     extend: {},
   },
