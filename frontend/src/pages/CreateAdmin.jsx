@@ -69,7 +69,7 @@ const CreateAdmin = () => {
         // ifSuccess or user is logged in 
         if(isSuccess){
             toast.success('Success! Admin created')
-            navigate('/users')
+            navigate('/manageadmin')
         }
 
         dispatch(reset())

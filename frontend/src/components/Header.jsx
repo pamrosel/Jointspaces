@@ -28,11 +28,16 @@ function Header() {
           
           { user ? (
                   <>
+
+                    { user.role === 'admin' ? (
                     <Link to="/admin">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                         <h3>Admin Panel</h3>
                       </button>
                     </Link>
+                    ) : (<></>)}
+
+                    
                     <Link to="/space">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                         <h3>Shared Jointspaces</h3>

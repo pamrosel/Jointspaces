@@ -13,6 +13,8 @@ const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus
 
 const Login = () => {
     
+
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -46,8 +48,11 @@ const Login = () => {
     useEffect(() => {
 
         // ifSuccess or user is logged in 
-        if(isSuccess || user){
+        if(isSuccess && user.role === 'user'){
             navigate('/space')
+        }
+        if(isSuccess && user.role === 'admin'){
+            navigate('/admin')
         }
         if(isError) {
             toast.error(message)

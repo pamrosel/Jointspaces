@@ -9,6 +9,8 @@ const dotenv = require('dotenv').config()
 
 // Call error middleware for development mode 
 const { errorHandler } = require('./middleware/errorMiddleware')
+// Call error middleware for development mode 
+// const { accessControl } = require('./middleware/accessControl')
 // Call mongo atlas database 
 const connectDB = require('./config/db')
 // Server running on port 5000 
@@ -68,9 +70,11 @@ if(process.env.NODE_ENV === 'production'){
 // Call error handling middleware
 server.use(errorHandler)
 
+
 // Call rate limiting middleware
 server.use(limiter)
 server.use(sessionLimiter)
+
 
 // Listen to the port 
 server.listen(port, () => console.log(`Server started on port ${port}`))

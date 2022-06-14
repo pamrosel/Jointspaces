@@ -55,8 +55,21 @@ const deleteUser = async (userId, token) => {
     return response.data
 }
 
+// Delete admin
+const deleteAdmin = async (userId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+
+    const response = await axios.delete('/api/alladmin/' + userId, config)
+
+    return response.data
+}
+
 const authService = {
-    register, registeradmin, login, logout, deleteUser,
+    register, registeradmin, login, logout, deleteUser, deleteAdmin,
 }
 
 export default authService

@@ -1,12 +1,26 @@
 import { useSelector } from 'react-redux'
 import { FaUserPlus, FaAddressBook, FaClipboardList } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function AdminDashboard() {
     const { user } = useSelector((state) => state.auth)
+    const navigate = useNavigate()
   
     return ( 
       <>
+            
+            { user.role === 'admin' ? (
+                    <>
+                        <h2>admin</h2>
+                    </>
+                ) : (
+                    <>
+                        <h2>user</h2>
+                    </>
+            )}
+
+
+
             <section className='mb-8'>
                 <h1>{user && user.name}, you are logged in as {user && user.role}.</h1>
             </section>
@@ -29,8 +43,15 @@ function AdminDashboard() {
 
                 <button className='bg-greeny rounded-lg w-full p-4 mb-5'>
                     <span className='inline-block pr-4'><FaAddressBook /></span>
-                    <Link to='/users'> 
+                    <Link to='/manageusers'> 
                         <h2 className="inline-block">Manage Users</h2>
+                    </Link>
+                </button>
+
+                <button className='bg-greeny rounded-lg w-full p-4 mb-5'>
+                    <span className='inline-block pr-4'><FaAddressBook /></span>
+                    <Link to='/manageadmin'> 
+                        <h2 className="inline-block">Manage Admin</h2>
                     </Link>
                 </button>
 

@@ -136,9 +136,18 @@ const getUserData = asyncHandler(async(req, res) => {
 // @route   GET /api/allusers
 // @access  Public
 const getUsers = asyncHandler(async(req, res) => {
-    const users = await User.find()
+    const users = await User.find({ role: 'user' })
     res.status(200).json(users)
 })
+
+// @desc    GET all admin users 
+// @route   GET /api/alladmin
+// @access  Public
+const getAdmin = asyncHandler(async(req, res) => {
+    const users = await User.find({ role: 'admin' })
+    res.status(200).json(users)
+})
+
 
 // Generate JWT
 const generateToken = (id) => {
@@ -168,11 +177,40 @@ const deleteUser = asyncHandler (async (req, res) => {
 
 })
 
+// @desc    GET User by ID
+// @route   GET /api/allusers/:id
+// @access  
+
+const getUser = asyncHandler (async (req, res) => {
+    const user = await User.findById(req.params.id)
+    res.status(200).json(user)
+})
+
+// @desc    Update User
+// @route   PUT /api/allusers/:id
+// @access  
+
+const updateUser = asyncHandler (async (req, res) => {
+    const user = await User.findById(req.params.id)
+
+    if(!user) {
+        res.status(400)
+        throw new Error ('User not found')
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, })
+
+    res.status(200).json(updatedUser)
+})
+
 module.exports = { 
     registerUser,
     loginUser,
     getUserData,
     getUsers, 
     registerAdmin, 
-    deleteUser
+    deleteUser,
+    getUser,
+    getAdmin,
+    updateUser,
 }

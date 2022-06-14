@@ -11,6 +11,7 @@ function Header() {
         dispatch(logout())
         dispatch(reset())
         navigate('/loggedout')
+        localStorage.setItem('usertype', 'unauthorized')
     }
 
     return (

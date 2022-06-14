@@ -69,7 +69,7 @@ const CreateUser = () => {
         // ifSuccess or user is logged in 
         if(isSuccess){
             toast.success('Success! User created')
-            navigate('/users')
+            navigate('/manageusers')
         }
 
         dispatch(reset())
