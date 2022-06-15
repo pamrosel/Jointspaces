@@ -20,9 +20,33 @@ function EditUser() {
         };
         fetch();
     }, [userid]);
-    
+
+    function blockUser(){
+        // e.preventDefault()
+        let checkbox = document.getElementById('userblock')
+
+        if(checkbox.checked) {
+        // if checkbox is checked, add block    
+        var values = user
+        Object.assign(user, {"blocked":"true"})
+        console.log(user)
+        } else {
+        // if checkbox is not checked, remove block
+        let values = {
+        '_id': user._id,
+        'name': user.name,
+        'email': user.email, 
+        'password': user.password,
+        'blocked': false,
+        }
+        console.log(values)
+        }
+        // dispatch(EditUser(values))
+    }
+
     return (
         <>
+        <form onSubmit={blockUser}>
           <article className="bg-greeny rounded-lg mb-8 px-4 pb-4 relative">
 
             <ul>
@@ -31,13 +55,14 @@ function EditUser() {
                 <li>email: {user.email}</li>
                 <li>role: {user.role}</li>
             </ul>
-
-            <input type="checkbox" name="userblock" value="blocked"/>
-            <label className="form-check-label inline-block" for="userblock">Block User</label>
-
+            
+                <input type="checkbox" id="userblock" value="blocked"/>
+                <label className="form-check-label inline-block" for="userblock">Block User</label>
+            
           </article>
 
             <button className='bg-pinky rounded-lg p-5 w-full' type="submit"><h2>Update User</h2></button>
+        </form>
         </>
     );
 }

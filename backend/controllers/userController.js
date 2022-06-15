@@ -52,10 +52,10 @@ const registerUser = asyncHandler(async (req, res) => {
     })
 
     // @desc    Register an admin user
-    // @route   POST /api/users
+    // @route   POST /api/users/admin
     // @access  Public
     const registerAdmin = asyncHandler(async (req, res) => {
-    const { name, email, password, role } = req.body
+    const { name, email, password, role, blocked } = req.body
     
     if(!name || !email || !password) {
         res.status(400)
@@ -80,7 +80,8 @@ const registerUser = asyncHandler(async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role
+        role,
+        blocked
     })
 
     // Check admin created
@@ -91,7 +92,8 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: admin.id,
             name: admin.name, 
             email: admin.email,
-            role: admin.role
+            role: admin.role,
+            blocked: admin.blocked,
         })
     } else {
         res.status(400)

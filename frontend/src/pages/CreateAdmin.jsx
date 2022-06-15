@@ -47,7 +47,8 @@ const CreateAdmin = () => {
                     ['name', values.name], 
                     ['email', values.email],
                     ['password', values.password],
-                    ['role', 'admin']
+                    ['role', 'admin'],
+                    ['blocked', false]
                 ]
 
                 const registerData = Object.fromEntries(userData)

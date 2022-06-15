@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a user role']
     },
+    blocked: {
+        type: Boolean,
+        required: [true, 'Is the user blocked']
+    }
 },
 {
     timestamps: true

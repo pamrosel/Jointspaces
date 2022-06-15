@@ -52,8 +52,8 @@ function App() {
                   <Route path='/admin' element={<AdminDashboard />} />
                   <Route path='/activitylog' element={<ActivityLog />} />
                   <Route path='/manageusers' element={<ManageUsers />} />
-                  <Route path='/manageadmin' element={<ManageAdmin />} />
                   <Route path='/manageusers/:userid' element={<EditUser />} />
+                  <Route path='/manageadmin' element={<ManageAdmin />} />
                   <Route path='/createadmin' element={<CreateAdmin />} />
                   <Route path='/createuser' element={<CreateUser />} />
                 </Route>

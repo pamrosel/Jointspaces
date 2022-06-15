@@ -35,9 +35,7 @@ function Header() {
                         <h3>Admin Panel</h3>
                       </button>
                     </Link>
-                    ) : (<></>)}
-
-                    
+                    ) : (<>
                     <Link to="/space">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                         <h3>Shared Jointspaces</h3>
@@ -48,10 +46,9 @@ function Header() {
                         <h3>Created Jointspaces</h3>
                       </button>
                     </Link>
-                      <button className='border-2 rounded-lg p-3 mb-5 w-full'>
-                        <h3>My Bookings</h3>
-                      </button>
-                    <Darkmode />
+                    <button className='border-2 rounded-lg p-3 mb-5 w-full'>
+                      <h3>My Bookings</h3>
+                    </button>
                     <Link to="/help">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' data-bs-dismiss="offcanvas"  aria-label="Close">
                         <h3>
@@ -59,7 +56,9 @@ function Header() {
                         </h3>
                       </button>
                     </Link>
-          
+                    </>)}
+
+                    <Darkmode />
                     <Logout />
                   </>
               ) : (

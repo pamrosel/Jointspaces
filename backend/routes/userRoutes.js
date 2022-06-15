@@ -12,6 +12,7 @@ const {
     registerAdmin,
     deleteUser,
     getUser,
+    updateUser,
     getAdmin,
 } = require('../controllers/userController')
 
@@ -42,6 +43,9 @@ router.get('/allusers/:id', getUser)
 
 // Create DELETE api route display all users
 router.delete('/allusers/:id', deleteUser)
+
+// Create PUT api route to update a user
+router.put('/allusers/:id', updateUser)
 
 // Export the router
 module.exports = router 

@@ -49,9 +49,7 @@ const deleteUser = async (userId, token) => {
             Authorization: `Bearer ${token}`,
         },
     }
-
     const response = await axios.delete('/api/allusers/' + userId, config)
-
     return response.data
 }
 
@@ -62,9 +60,7 @@ const deleteAdmin = async (userId, token) => {
             Authorization: `Bearer ${token}`,
         },
     }
-
     const response = await axios.delete('/api/alladmin/' + userId, config)
-
     return response.data
 }
 

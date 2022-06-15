@@ -47,7 +47,8 @@ const CreateUser = () => {
                     ['name', values.name], 
                     ['email', values.email],
                     ['password', values.password],
-                    ['role', 'user']
+                    ['role', 'user'],
+                    ['blocked', 'false']
                 ]
 
                 const registerData = Object.fromEntries(userData)
