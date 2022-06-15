@@ -7,7 +7,7 @@ const User = require('../models/userModel')
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password, role } = req.body
+    const { name, email, password, role, blocked } = req.body
     
     if(!name || !email || !password) {
         res.status(400)
@@ -32,7 +32,8 @@ const registerUser = asyncHandler(async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role
+        role, 
+        blocked,
     })
 
     // Check user created
@@ -42,6 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
             name: user.name, 
             email: user.email,
             role: user.role,
+            blocked: user.blocked,
             token: generateToken(user._id)
         })
     } else {

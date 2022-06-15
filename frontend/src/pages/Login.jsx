@@ -13,17 +13,15 @@ const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus
 
 const Login = () => {
     
-
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    
+    // Form validation using Formik & Yup schema 
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
         },
-
         validationSchema: Yup.object ({
             email: Yup.string()
                 .email('Must be a valid email')
@@ -33,24 +31,22 @@ const Login = () => {
                 .max(40, 'Must be 40 characters or less')
                 .required('Password is required')
         }),
-
         onSubmit: values => {
             console.log(values)
             dispatch(login(values))
         },
-        
     })
 
     const { user, isLoading, isError, isSuccess, message } = useSelector(
-        // react-redux gets state from global 'auth' state   
-        (state) => state.auth)
-
+    // react-redux gets state from global 'auth' state   
+    (state) => state.auth)
+    
     useEffect(() => {
-
-        // ifSuccess or user is logged in 
+        // If a 'user' logs in successfully, navigate to Shared Spaces 
         if(isSuccess && user.role === 'user'){
-            navigate('/space')
+            navigate('/spaces')
         }
+        // If an 'admin' logs in successfully, navigate to Admin Panel 
         if(isSuccess && user.role === 'admin'){
             navigate('/admin')
         }
@@ -58,10 +54,10 @@ const Login = () => {
             toast.error(message)
         }
         dispatch(reset())
-
         }, [user, isError, isSuccess, message, navigate, dispatch]
     )
 
+    // If state isLoading show spinner 
     if(isLoading) {
         return <Spinner />
     }
@@ -74,7 +70,6 @@ const Login = () => {
         
             <section>
                 <form className={formClassName} onSubmit={formik.handleSubmit}>
-                    
                     {formik.touched.email && formik.errors.email ? (
                         <span className={errorClassName}>{formik.errors.email}</span>
                     ) : null}
@@ -88,7 +83,6 @@ const Login = () => {
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
                     />
-                    
                     {formik.touched.password && formik.errors.password ? (
                         <span className={errorClassName}>{formik.errors.password}</span>
                     ) : null}
@@ -102,7 +96,6 @@ const Login = () => {
                         onBlur={formik.handleBlur}
                         value={formik.values.password}
                     />
-
                     <button className='bg-pinky rounded-lg p-5 mb-5' type="submit"><h2>Login</h2></button>
                 </form>
             </section>

@@ -21,7 +21,7 @@ const Register = () => {
             name: "",
             email: "",
             password: "",
-            password2: ""
+            password2: "",
         }, 
 
         validationSchema: Yup.object ({
@@ -47,7 +47,8 @@ const Register = () => {
                     ['name', values.name], 
                     ['email', values.email],
                     ['password', values.password],
-                    ['role', 'user']
+                    ['role', 'user'],
+                    ['blocked', false],
                 ]
 
                 const registerData = Object.fromEntries(userData)
@@ -67,7 +68,7 @@ const Register = () => {
 
         // ifSuccess or user is logged in 
         if(isSuccess || user){
-            navigate('/space')
+            navigate('/spaces')
         }
 
         dispatch(reset())

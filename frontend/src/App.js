@@ -37,6 +37,7 @@ function App() {
             <Routes>
               <Route path="/">    
                 
+                {/* User Access Only Routes */}
                 <Route element={<UserProtectedRoutes />}>
                   <Route path='/createdspaces' element={<Dashboard/>} />
                   <Route path='/spaces' element={<Spaces />} />
@@ -47,6 +48,7 @@ function App() {
                   <Route path="/help/makeabooking" element={<HelpMakeBooking />} />
                 </Route>
 
+                {/* Admin Access Only Routes */}
                 <Route element={<AdminProtectedRoutes />}>
                   <Route path='/admin' element={<AdminDashboard />} />
                   <Route path='/activitylog' element={<ActivityLog />} />
@@ -56,7 +58,8 @@ function App() {
                   <Route path='/createadmin' element={<CreateAdmin />} />
                   <Route path='/createuser' element={<CreateUser />} />
                 </Route>
-            
+
+                {/* Public Access Routes */}
                 <Route path='/' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/loggedout' element={<Loggedout />} />
