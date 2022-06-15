@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { toast } from 'react-toastify'
-import Login from './pages/Login'
+import NoAccess from './pages/404'
 
 const userAuth = () => {
   
@@ -22,6 +22,6 @@ const userAuth = () => {
 
 export default function ProtectedRoutes() {
   const isUser = userAuth();
-  return isUser ? <Outlet/> : <Login />
+  return isUser ? <Outlet/> : <NoAccess />
 }
 

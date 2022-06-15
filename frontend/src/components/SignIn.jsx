@@ -7,7 +7,7 @@ function Header() {
         <ul className='mt-10'>
             <li>
                 <button data-bs-dismiss="offcanvas" aria-label="Close">
-                    <Link to='/login'>
+                    <Link to='/'>
                         <FaSignInAlt className='inline-block' /> Login
                     </Link>
                 </button>

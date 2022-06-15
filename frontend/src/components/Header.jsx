@@ -36,12 +36,12 @@ function Header() {
                       </button>
                     </Link>
                     ) : (<>
-                    <Link to="/space">
+                    <Link to="/spaces">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                         <h3>Shared Jointspaces</h3>
                       </button>
                     </Link>
-                    <Link to="/">
+                    <Link to="createdspaces">
                       <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
                         <h3>Created Jointspaces</h3>
                       </button>

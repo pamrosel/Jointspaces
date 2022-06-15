@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Login from './pages/Login'
+import NoAccess from './pages/404'
 
 const adminAuth = () => {
 
@@ -16,10 +16,9 @@ const adminAuth = () => {
   console.log(admin)
   // if admin is true return TRUE
   return admin
-
 }
 
 export default function ProtectedRoutes() {
   const isUser = adminAuth();
-  return isUser ? <Outlet/> : <Login />
+  return isUser ? <Outlet/> : <NoAccess />
 }

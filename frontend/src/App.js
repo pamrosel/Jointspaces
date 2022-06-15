@@ -4,8 +4,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import AdminProtectedRoutes from "./AdminProtectedRoutes";
 import UserProtectedRoutes from "./UserProtectedRoutes";
-import { Provider } from 'react-redux';
-import { store } from './app/store';
 
 // Import components
 import Header from './components/Header'
@@ -27,6 +25,7 @@ import CreateAdmin from './pages/CreateAdmin'
 import CreateUser from './pages/CreateUser'
 import Help from './pages/Help'
 import HelpMakeBooking from './pages/HelpMakeBooking'
+import NoAccess from './pages/404';
 
 function App() {
 
@@ -39,8 +38,8 @@ function App() {
               <Route path="/">    
                 
                 <Route element={<UserProtectedRoutes />}>
-                  <Route path='/' element={<Dashboard/>} />
-                  <Route path='/space' element={<Spaces />} />
+                  <Route path='/createdspaces' element={<Dashboard/>} />
+                  <Route path='/spaces' element={<Spaces />} />
                   <Route path="/space/:spaceid" element={<SpaceSingle />} />
                   <Route path="/bookings/:bookingfromspaceid" element={<SpaceBookings />} />
                   <Route path='/createspace' element={<Createspace />} />
@@ -58,9 +57,10 @@ function App() {
                   <Route path='/createuser' element={<CreateUser />} />
                 </Route>
             
-                <Route path='/login' element={<Login />} />
+                <Route path='/' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/loggedout' element={<Loggedout />} />
+                <Route path='/404' element={<NoAccess />} />
               </Route>
             </Routes>
         </div>

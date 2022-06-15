@@ -75,17 +75,13 @@ function Users() {
                     </button>
                   </Link>
                   
-
-                  
-
-                  
-                 
                   <h2 className='mb-2'>Username: {user.name}</h2>
                   <p>ID: {user._id}
                   <br/>Created at: {user.createdAt}
                   <br/>Username: {user.name}
                   <br/>Email: {user.email}
                   <br/>Role: {user.role}
+                  <br/>Blocked: {String(user.blocked)}
                   </p>
                   
                 </article>
@@ -96,6 +92,3 @@ function Users() {
   }
   
   export default Users
-
-  // onClick={() => 
-  //   dispatch(deleteUser(user._id))}

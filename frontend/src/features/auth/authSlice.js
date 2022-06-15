@@ -97,7 +97,6 @@ export const deleteAdmin = createAsyncThunk(
     }
 )
 
-
 export const authSlice = createSlice ({
     name: 'auth',
     initialState, 
@@ -189,5 +188,3 @@ export const authSlice = createSlice ({
 
 export const { reset } = authSlice.actions
 export default authSlice.reducer
-
-// authSlice reducer brought into store.js

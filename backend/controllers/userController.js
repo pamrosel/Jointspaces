@@ -181,7 +181,7 @@ const deleteUser = asyncHandler (async (req, res) => {
 
 // @desc    GET User by ID
 // @route   GET /api/allusers/:id
-// @access  
+// @access  admin
 
 const getUser = asyncHandler (async (req, res) => {
     const user = await User.findById(req.params.id)
@@ -190,7 +190,7 @@ const getUser = asyncHandler (async (req, res) => {
 
 // @desc    Update User
 // @route   PUT /api/allusers/:id
-// @access  
+// @access  admin
 
 const updateUser = asyncHandler (async (req, res) => {
     const user = await User.findById(req.params.id)
@@ -201,7 +201,6 @@ const updateUser = asyncHandler (async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, })
-
     res.status(200).json(updatedUser)
 })
 

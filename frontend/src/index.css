@@ -61,7 +61,13 @@ body {
     --plum: #493843 !important;
 }
 
+input:checked + label:before {
+    content:'Blocked User'
+}
 
+input + label:before {
+    content:'Unblocked User'
+}
 
 .accordion-button:not(.collapsed), .accordion-button:not(.collapsed)::after {
     color: #493843 !important;
