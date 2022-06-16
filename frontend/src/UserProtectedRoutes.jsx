@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import NoAccess from './pages/404'
 
 const userAuth = () => {
+  localStorage.setItem('usertype','unauthorized')
   
   // If user auth (jwt token) is set in localStorage then the 
   // user is authenticated. If it exists, store the user role

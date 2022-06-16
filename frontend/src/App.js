@@ -26,6 +26,7 @@ import CreateUser from './pages/CreateUser'
 import Help from './pages/Help'
 import HelpMakeBooking from './pages/HelpMakeBooking'
 import NoAccess from './pages/404';
+import AdminLogin from './pages/AdminLogin'; 
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
 
                 {/* Public Access Routes */}
                 <Route path='/' element={<Login />} />
+                <Route path='/adminlogin' element={<AdminLogin />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/loggedout' element={<Loggedout />} />
                 <Route path='/404' element={<NoAccess />} />

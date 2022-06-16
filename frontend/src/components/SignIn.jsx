@@ -12,6 +12,13 @@ function Header() {
                     </Link>
                 </button>
             </li>
+            <li>
+                <button data-bs-dismiss="offcanvas" aria-label="Close">
+                    <Link to='/adminlogin'>
+                        <FaSignInAlt className='inline-block' /> Admin Login
+                    </Link>
+                </button>
+            </li>
             <li className='mt-1'>
                 <button data-bs-dismiss="offcanvas" aria-label="Close">
                     <Link to='/register'>
