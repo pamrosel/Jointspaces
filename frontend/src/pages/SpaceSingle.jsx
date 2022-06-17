@@ -12,7 +12,6 @@ function SingleSpace() {
             try {
                 const { data } = await axios.get(`/api/spacebookings/${spaceid}`)
                 SetSpace(data)
-                console.log(data)
             } catch (err) {
                 console.error(err)
             }
@@ -92,10 +91,7 @@ function SingleSpace() {
                 <h2>Make a Booking</h2>
               </Link>
             </button>
-  
-            {/* <button onClick={() => navigate("/space")}>
-              Go back
-            </button> */}
+            
           </article>
     );
 }

@@ -19,7 +19,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     if(userExists) {
         res.status(400)
-        console.log('register user exists')
+        // console.log('register user exists')
         throw new Error('User already exists')
     }
 
@@ -68,7 +68,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const userExists = await User.findOne({email})
 
     if(userExists) {
-        console.log('registeradmin user exists')
+        // console.log('registeradmin user exists')
         res.status(400)
         throw new Error('User already exists')
     }
@@ -88,7 +88,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Check admin created
     if(admin) {
-        console.log('you created an admin!')
+        // console.log('you created an admin!')
         // res.status(201).json({message: 'you created a admin!'})
         res.status(201).json({
             _id: admin.id,
@@ -171,13 +171,13 @@ const deleteUser = asyncHandler (async (req, res) => {
     if(!usertodelete) {
         res.status(404).json({ message: 'no user to delete' })
         throw new Error ('User to delete not found')
-        console.log('user to delete not found')
+        // console.log('user to delete not found')
     }
 
     //Can find a user with ID
     usertodelete.remove()
     res.status(200).json({ id: req.params.id })
-    console.log( 'user'+ req.params.id +'was deleted')
+    // console.log( 'user'+ req.params.id +'was deleted')
 
 })
 

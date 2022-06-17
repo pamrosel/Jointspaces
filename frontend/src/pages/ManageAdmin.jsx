@@ -18,7 +18,6 @@ function Users() {
               try {
                   const { data } = await axios.get("/api/alladmin");
                   setUsers(data);
-                  console.log(data);
               } catch (err) {
                   console.error(err);
               }
@@ -66,7 +65,7 @@ function Users() {
                         )}>yes</button>
 
                     <button className='bg-greyish text-white p-4 rounded-lg ml-2' onClick={(e) => 
-                    console.log(e.currentTarget.parentElement.style.display = "none")}>no</button>
+                    e.currentTarget.parentElement.style.display = "none"}>no</button>
                   </span>
                  
                   <h2 className='mb-2'>Username: {user.name}</h2>

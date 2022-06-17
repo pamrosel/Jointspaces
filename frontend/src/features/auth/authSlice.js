@@ -32,7 +32,6 @@ export const register = createAsyncThunk('auth/register',
 export const registeradmin = createAsyncThunk('auth/registeradmin', 
     async(user, thunkAPI) => {
         try {
-            console.log('hey register admin slice')
             return await authService.registeradmin(user)
         } catch (error) {
             const message = (error.response && error.response.data && error.response.data.message) 

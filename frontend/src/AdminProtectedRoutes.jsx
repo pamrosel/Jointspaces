@@ -17,7 +17,7 @@ const adminAuth = () => {
   // If usertype === admin, return TRUE
   const usertype = localStorage.getItem('usertype')
   const admin = usertype === 'admin'
-  console.log(admin)
+  // console.log(admin)
   return admin
   // On user logout, usertype is reset to 'Unauthorized'
 }

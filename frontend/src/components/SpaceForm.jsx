@@ -1,5 +1,8 @@
-import { useDispatch } from 'react-redux'
-import { createSpace } from '../features/spaces/spaceSlice'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { createSpace, reset } from '../features/spaces/spaceSlice'
 import { FaPlus, FaPen, FaImage, FaHouseUser, FaListAlt, FaMapMarkerAlt, FaMapMarker, FaUserPlus, FaRegCalendarAlt, FaPlusCircle, FaQuestionCircle } from 'react-icons/fa'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -14,6 +17,7 @@ const SpaceForm = () => {
 
     // declare dispatch from react-redux 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     // reset fields using initialValues object from formik
     const formik = useFormik({
@@ -59,19 +63,33 @@ const SpaceForm = () => {
         }),
 
         onSubmit: values => {
-            console.log(values)
-
             // use dispatch to post to createSpace
             dispatch(createSpace(values))
         },
-
     })
+
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
+    // react-redux gets state from global 'auth' state   
+    (state) => state.auth)
+        
+    useEffect(() => {
+        if(isSuccess){
+            navigate('/createdspaces')
+            toast.success('Success! Space Created')
+        }
+        if(isError) {
+            toast.error('message')
+        }
+        dispatch(reset())
+        }, [user, isError, isSuccess, message, navigate, dispatch])
+
 
     var countBox = 1;
     function addUser(){ 
         document.getElementById('newfields').innerHTML+='<br/><input type="text" id="spaceusers" class="rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white w-full" name="spaceusers" placeholder="user email" /><br/>'
         countBox += 1;
-        console.log(countBox)
+        // console.log(countBox)
     }
 
     return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -15,19 +15,20 @@ const Login = () => {
     
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    const [userIp, setUserIp] = useState(null)
     
     // Fetches the current users IP address and matches it to whitelist
     useEffect(() => {
         // Const adminIp = only whitelisted IP
-        const adminIp = "120.22.75.108"
-        fetch('https://api.ipify.org/?format=json')
+        const adminIp = "117.20.68.92"
+        fetch('https://api.ipify.org/?format=json', {
+            method: "GET",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
         .then(result => result.json())
-            .then((data) => {
-                // console.log("ip address = ",data);
-                // console.log(adminIp+" = "+data.ip)
-                
+            .then((data) => {                
                 // If users ip does not match whitelisted IP, navigate to 404 
                 if(adminIp !== data.ip){
                     toast.error('Invalid IP');
@@ -52,7 +53,6 @@ const Login = () => {
                 .required('Password is required')
         }),
         onSubmit: values => {
-            console.log(values)
             dispatch(login(values))
         },
     })
@@ -128,115 +128,3 @@ const Login = () => {
 }
 
 export default Login
-
-
-
-
-
-
-
-
-
-
-// import { useState, useEffect } from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { Link, useNavigate } from 'react-router-dom'
-// import { toast } from 'react-toastify'
-// // import { FaSignInAlt } from 'react-icons/fa'
-// import { login, reset } from '../features/auth/authSlice'
-// import Spinner from '../components/Spinner'
-
-// const formClassName = "container mx-auto grid md:grid-cols-2 gap-1"
-// const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white"
-
-// function Login() {
-    
-//     // setFormData to empty email and password fields 
-//     const [formData, setFormData] = useState({
-//             email: '', 
-//             password: '',
-//     })
-  
-//     const { email, password } = formData
-
-//     const navigate = useNavigate()
-//     const dispatch = useDispatch()
-
-//     const { user, isLoading, isError, isSuccess, message } = useSelector(
-//         // react-redux gets state from global 'auth' state   
-//         (state) => state.auth)
-
-//     useEffect(() => {
-//         if(isError) {
-//             toast.error(message)
-//         }
-
-//         // ifSuccess or user is logged in 
-//         if(isSuccess || user){
-//             navigate('/')
-//         }
-
-//         dispatch(reset())
-
-//         }, [user, isError, isSuccess, message, navigate, dispatch])
-
-//     const onChange = (e) => {
-//         setFormData((prevState) => ({
-//             ...prevState,
-//             [e.target.name]: e.target.value,
-//         }))
-//     }
-
-//     const onSubmit = (e) => {
-//         e.preventDefault()
-
-//         const userData = {
-//             email, password,
-//         }
-
-//         console.log(userData)
-//         dispatch(login(userData))
-//     }
-
-//     if(isLoading) {
-//         return <Spinner />
-//     }
-
-//     return (
-//         <>
-//             <section className='pr-10 mb-5'>
-//                 <h1>Login and start using JointSpaces.</h1>
-//             </section>
-        
-//             <section>
-//                 <form className={formClassName} onSubmit={onSubmit}>
-//                     <input 
-//                         type="text" 
-//                         className={inputClassName}
-//                         id="email" 
-//                         name="email" 
-//                         value={email} 
-//                         placeholder="Enter your email" 
-//                         onChange={onChange}
-//                     />
-//                     <input 
-//                         type="password" 
-//                         className={inputClassName}
-//                         id="password" 
-//                         name="password" 
-//                         value={password} 
-//                         placeholder="Enter password" 
-//                         onChange={onChange}
-//                     />
-//                     <button className='bg-pinky rounded-lg p-5 mb-5' type="submit"><h2>Login</h2></button>
-//                 </form>
-//             </section>
-
-//             <section>
-//                 <h3 className='text-center'><Link className='underline' to='/register'>I don't have an account</Link></h3>
-//             </section>
-//         </>
-//     )
-// }
-
-// export default Login

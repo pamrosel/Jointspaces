@@ -61,11 +61,11 @@ body {
     --plum: #493843 !important;
 }
 
-input:checked + label:before {
+.edituser input:checked + label:before {
     content:'Blocked User'
 }
 
-input + label:before {
+.edituser input + label:before {
     content:'Unblocked User'
 }
 

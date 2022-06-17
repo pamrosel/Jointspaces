@@ -10,7 +10,6 @@ function ActivityLog() {
               try {
                   const { data } = await axios.get("/api/logs");
                   setLogs(data);
-                  console.log(data);
               } catch (err) {
                   console.error(err);
               }

@@ -14,7 +14,6 @@ function EditUser() {
             try {
                 const { data } = await axios.get(`/api/allusers/${userid}`)
                 SetUser(data)
-                console.log(data)
             } catch (err) {
                 console.error(err)
             }
@@ -42,8 +41,6 @@ function EditUser() {
         values = user
         Object.assign(user, {"blocked":false})
         }
-        // console.log(values)
-        // console.log('api/allusers/'+user._id)
         
         try {
             const res = await fetch(`/api/allusers/${userid}`, {
@@ -79,7 +76,7 @@ function EditUser() {
 
     return (
         <>
-            <form onSubmit={blockUser}>
+            <form className="edituser" onSubmit={blockUser}>
                 <article className="bg-greeny rounded-lg mb-8 px-4 pb-4 relative">
                     <ul>
                         <li><h2 className="pt-2">Username: {user.name}</h2></li>
@@ -87,7 +84,7 @@ function EditUser() {
                         <li>Email: {user.email}</li>
                         <li>Role: {user.role}</li>
                     </ul>
-                    <input type="checkbox" id="userblock" value="blocked" className='mr-2'/>
+                    <input type="checkbox" id="userblock" value="blocked" className='mr-2 userblock'/>
                     <label className="form-check-label inline-block" for="userblock"></label>
                     
                 </article>

@@ -13,9 +13,7 @@ function Allspaces() {
           try {
               const { data } = await axios.get("/api/allspaces");
               setAllspaces(data);
-              console.log(data);
           } catch (err) {
-
               console.error(err);
           }
       }

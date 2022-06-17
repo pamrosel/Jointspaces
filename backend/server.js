@@ -27,7 +27,9 @@ const server = express()
 // Cors whitelist origins
 server.use(cors
     (
-        { origin: [...process.env.CORS_ORIGIN.split(", ")], }
+        { 
+            origin: [...process.env.CORS_ORIGIN.split(", ")],
+         }
     ))
 
 server.use(function(req, res, next) {
@@ -61,7 +63,6 @@ server.use('/api', require('./routes/logRoutes'))
 if(process.env.NODE_ENV === 'production'){
     console.log('in production')
     server.use(express.static(path.join(__dirname, '../frontend/build')))
-    
     server.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')))
 } else {
     server.get('/', (req, res) => res.send('Please set to production'))
@@ -70,11 +71,9 @@ if(process.env.NODE_ENV === 'production'){
 // Call error handling middleware
 server.use(errorHandler)
 
-
 // Call rate limiting middleware
 server.use(limiter)
 server.use(sessionLimiter)
-
 
 // Listen to the port 
 server.listen(port, () => console.log(`Server started on port ${port}`))

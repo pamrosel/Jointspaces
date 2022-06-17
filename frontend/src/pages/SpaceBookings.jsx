@@ -12,7 +12,6 @@ function SpaceBookings() {
             try {
                 const { data } = await axios.get(`/api/spacebookings/${bookingfromspaceid}`)
                 SetSpace(data)
-                console.log(data)
             } catch (err) {
                 console.error(err)
             }
@@ -26,7 +25,6 @@ function SpaceBookings() {
             try {
                 const { data } = await axios.get(`/api/bookings/${bookingfromspaceid}`)
                 SetBooking(data)
-                console.log(data)
             } catch (err) {
                 console.error(err)
             }

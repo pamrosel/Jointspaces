@@ -41,8 +41,6 @@ const CreateAdmin = () => {
         }),
 
         onSubmit: values => {
-                console.log(values)
-
                 const userData = [
                     ['name', values.name], 
                     ['email', values.email],
@@ -50,9 +48,7 @@ const CreateAdmin = () => {
                     ['role', 'admin'],
                     ['blocked', false]
                 ]
-
                 const registerData = Object.fromEntries(userData)
-                console.log(registerData)
                 dispatch(registeradmin(registerData))
         },
     })

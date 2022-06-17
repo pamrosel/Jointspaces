@@ -41,8 +41,6 @@ const Register = () => {
         }),
 
         onSubmit: values => {
-                console.log(values)
-
                 const userData = [
                     ['name', values.name], 
                     ['email', values.email],
@@ -50,7 +48,6 @@ const Register = () => {
                     ['role', 'user'],
                     ['blocked', false],
                 ]
-
                 const registerData = Object.fromEntries(userData)
                 dispatch(register(registerData))
         },

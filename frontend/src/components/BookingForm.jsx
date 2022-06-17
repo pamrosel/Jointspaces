@@ -34,8 +34,6 @@ const BookingForm = () => {
         }),
 
         onSubmit: values => {
-            console.log(values)
-            console.log(bookingfromspaceid)
             // use dispatch to post to createBooking
             dispatch(createBooking(values))
         },
