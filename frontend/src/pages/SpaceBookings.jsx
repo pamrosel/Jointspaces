@@ -38,7 +38,6 @@ function SpaceBookings() {
 
         {booking.map((item, _id) => 
           <article key={item._id} className='bg-pinky rounded-lg p-4 mb-6'>
-             <div>User: {item.user.name}</div>
             <div>booking start: {item.bookingstart}</div>
             <div>booking end: {item.bookingend}</div> 
           </article>
