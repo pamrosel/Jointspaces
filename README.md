@@ -15,8 +15,8 @@ To demonstrate a 'user' login:
 - password: abc123
 
 To demonstrate an 'admin' login: 
-- email: pamrosel.is@gmail.com 
-- password: abc123
+- email: superadmin@jointspaces.com 
+- password: SuperAdminAbc123
 * Please note: IP whitelisting will prevent random IP access
 
 ---
