@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>index</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Mono&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/jointspace.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="padding: 22px;">
+    <div id="header">
+        <h1><a href="/index.html">&lt;</a> Jointspaces</h1><i class="fa fa-asterisk" id="menu" type="button" data-bs-toggle="offcanvas" role="button" data-bs-target="#offcanvas-1" aria-controls="offcanvas-1"></i>
+    </div>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-1">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menu</h5><button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>
+                <a href="/mybookings.html">My Bookings</a>
+                <br><a href="/myaccount.html">My Account</a>
+            </p>
+        </div>
+    </div>
+    <h1 class="mb">Create a Jointspace</h1><input type="text" class="base-input mb" placeholder="Space Name"><input type="text" class="base-input mb" placeholder="Address"><input type="text" class="base-input mb" placeholder="Suburb"><textarea class="base-input mb" placeholder="About this space" rows="5"></textarea><textarea class="base-input mb" placeholder="Rules of the space" rows="5"></textarea>
+    <div class="row mb">
+        <div class="col"><label class="form-label">Single vs. Multiple Bookings</label>
+            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">This is a single bookings space, meaning it can be booked by one user at a time, even if that is on the behalf of a group.</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2"><label class="form-check-label" for="formCheck-2">This is a multiple bookings space, meaning it can be booked by multiple users at any one time.</label></div>
+        </div>
+    </div><input type="text" class="base-input mb" placeholder="Capacity">
+    <div class="row mb">
+        <div class="col"><label class="form-label">Invite Users</label>
+            <div class="input-group mb"><input class="form-control" type="text" placeholder="example@email.com"><button class="btn btn-primary" type="button"><i class="fa fa-plus"></i></button></div>
+            <ul class="list-group">
+                <li class="list-group-item"><span>cscarce@hotmail.com</span></li>
+                <li class="list-group-item"><span>caseyjackmitchell@gmail.com</span></li>
+                <li class="list-group-item"><span>mperkins88@gmail.com</span></li>
+                <li class="list-group-item"><span>callumg@hotmail.com</span></li>
+                <li class="list-group-item"><span>pezrosel@hotmail.com</span></li>
+            </ul>
+        </div>
+    </div>
+    <button class="btn btn-primary mb" type="button">Read Jointspace Terms &amp; Conditions</button>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label mb" for="formCheck-3">I accept the Jointspace Terms &amp; Conditions, as the creator and therefore manager of this space.</label></div>
+    <button class="btn btn-primary btn-wide" type="button">Create Jointspace</button>
+    <div class="input-group"></div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

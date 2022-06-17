@@ -1,4 +1,4 @@
-import { FaAsterisk, FaTimes } from 'react-icons/fa'
+import { FaAsterisk, FaTimes, FaQuestionCircle } from 'react-icons/fa'
 import SignIn from '../components/SignIn'
 import Darkmode from '../components/Darkmode'
 import { Link } from "react-router-dom";
@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 import Logout from '../components/Logout'
 
 function Header() {
-
   const { user } = useSelector((state) => state.auth)
 
   return (
@@ -19,24 +18,42 @@ function Header() {
       </header>
 
       <div className="offcanvas offcanvas-end fixed bottom-0 flex flex-col max-w-full invisible bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out top-0 right-0 border-none w-96" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div className="offcanvas-header flex items-center justify-between p-4">
-          <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"><span className='text-3xl'><FaTimes /></span></button>
-        </div>
-        <div className="offcanvas-body flex-grow p-4 overflow-y-auto">
-          
+      <div className="offcanvas-header flex items-center justify-between p-4">
+        <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"><span className='text-3xl'><FaTimes /></span></button>
+      </div>
+      <div className="offcanvas-body flex-grow p-4 overflow-y-auto">
+          {/* Conditionally renders off-canvas menu based on user role so that whether you are a 'user', 'admin' or 'unauthorized' this menu shows you what is available to access for your level of permissions */}
           { user ? (
                   <>
-                    <Link to="/space">
-                    <h3 data-bs-dismiss="offcanvas"  aria-label="Close">
-                      Shared Spaces
-                    </h3>
+                    { user.role === 'admin' ? (
+                    <Link to="/admin">
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <h3>Admin Panel</h3>
+                      </button>
                     </Link>
-                    <Link to="/">
-                    <h3 data-bs-dismiss="offcanvas"  aria-label="Close">
-                      My Created Spaces
-                    </h3>
+                    ) : (<>
+                    <Link to="/spaces">
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <h3>Shared Jointspaces</h3>
+                      </button>
                     </Link>
-                    <h3>My Bookings</h3>
+                    <Link to="createdspaces">
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <h3>Created Jointspaces</h3>
+                      </button>
+                    </Link>
+                    <button className='border-2 rounded-lg p-3 mb-5 w-full'>
+                      <h3>My Bookings</h3>
+                    </button>
+                    <Link to="/help">
+                      <button className='border-2 rounded-lg p-3 mb-5 w-full' data-bs-dismiss="offcanvas"  aria-label="Close">
+                        <h3>
+                          <FaQuestionCircle className='inline'/> Help
+                        </h3>
+                      </button>
+                    </Link>
+                    </>
+                    )}
                     <Darkmode />
                     <Logout />
                   </>

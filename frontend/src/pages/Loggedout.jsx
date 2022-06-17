@@ -5,7 +5,7 @@ function Loggedout() {
   return ( <>   
       <section>
           <h1 className='mb-5'>You've logged out. Enjoy the rest of your day.</h1>
-          <h3 className='text-center'><Link className='underline' to='/login'>Go back to login</Link></h3>
+          <h3 className='text-center'><Link className='underline' to='/'>Go back to login</Link></h3>
       </section>
     </>
   )

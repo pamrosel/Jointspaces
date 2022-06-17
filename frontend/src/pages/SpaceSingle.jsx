@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { FaQuestionCircle } from 'react-icons/fa'
 
 function SingleSpace() {
     const { spaceid } = useParams();
-    let navigate = useNavigate();
 
     const [space, SetSpace] = useState([]);
     useEffect(() => {
         const fetch = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:3000/api/spacebookings/${spaceid}`)
+                const { data } = await axios.get(`/api/spacebookings/${spaceid}`)
                 SetSpace(data)
-                console.log(data)
             } catch (err) {
                 console.error(err)
             }
         };
         fetch();
-    }, []);
+    }, [spaceid]);
     
     return (
           <article>
@@ -74,6 +73,14 @@ function SingleSpace() {
                   <div className="accordion-body py-4 px-5">
                     <h3>Bookings type: single</h3>
                     <h3>Capacity: 8</h3>
+                    <details className='mt-5'>   
+                      <summary>What does single or multi mean <FaQuestionCircle className='inline'/></summary>
+                      <p><br/>Single<br/>
+                      If this is a 'single' bookings space, it can be booked by one user at a time, even if that is on the behalf of a group.<br/><br/>
+                      Multi<br/>
+                      If this is a 'multi' bookings space, it can be booked by multiple users at any one time.
+                      </p>
+                    </details> 
                   </div>
                 </div>
               </div>
@@ -84,10 +91,7 @@ function SingleSpace() {
                 <h2>Make a Booking</h2>
               </Link>
             </button>
-  
-            {/* <button onClick={() => navigate("/space")}>
-              Go back
-            </button> */}
+            
           </article>
     );
 }

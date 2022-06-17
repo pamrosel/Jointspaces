@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { register, reset } from '../features/auth/authSlice'
+import { registeradmin, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -11,7 +11,7 @@ const errorClassName = "text-red md:col-span-2 pl-2.5"
 const formClassName = "container mx-auto grid md:grid-cols-2 gap-1"
 const inputClassName = "rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white"
 
-const Register = () => {
+const CreateUser = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const Register = () => {
             name: "",
             email: "",
             password: "",
-            password2: "",
+            password2: ""
         }, 
 
         validationSchema: Yup.object ({
@@ -46,10 +46,10 @@ const Register = () => {
                     ['email', values.email],
                     ['password', values.password],
                     ['role', 'user'],
-                    ['blocked', false],
+                    ['blocked', 'false']
                 ]
                 const registerData = Object.fromEntries(userData)
-                dispatch(register(registerData))
+                dispatch(registeradmin(registerData))
         },
     })
 
@@ -64,8 +64,9 @@ const Register = () => {
         }
 
         // ifSuccess or user is logged in 
-        if(isSuccess || user){
-            navigate('/spaces')
+        if(isSuccess){
+            toast.success('Success! User created')
+            navigate('/manageusers')
         }
 
         dispatch(reset())
@@ -81,7 +82,7 @@ const Register = () => {
         <>
             <section className='mb-5 pr-5'>
                 <h1>
-                    Create your account.
+                    Create a new User.
                 </h1>
             </section>
         
@@ -96,7 +97,7 @@ const Register = () => {
                         className={inputClassName}
                         id="name" 
                         name="name" 
-                        placeholder="Enter your username"
+                        placeholder="Admin username"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.name}
@@ -110,7 +111,7 @@ const Register = () => {
                         className={inputClassName}
                         id="email" 
                         name="email" 
-                        placeholder="Enter your email" 
+                        placeholder="Admin email" 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
@@ -124,7 +125,7 @@ const Register = () => {
                         className={inputClassName}
                         id="password" 
                         name="password" 
-                        placeholder="Enter password" 
+                        placeholder="Admin password" 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.password}
@@ -144,18 +145,13 @@ const Register = () => {
                         value={formik.values.password2}
                     />
 
-                    <button className='bg-greeny rounded-lg p-5 mb-5' type="submit">
-                        <h2>Register</h2>
+                    <button className='bg-orangey rounded-lg p-5 mb-5' type="submit">
+                        <h2>Create User</h2>
                     </button>
                 </form>
-            </section>
-
-            <section>
-                <h3 className='text-center'><Link className='underline' to='/'>I have an account</Link></h3>
             </section>
         </>
     )
 }
 
-export default Register
-
+export default CreateUser

@@ -12,6 +12,22 @@
     --dmmono: 'DM Mono', monospace;
 }
 
+.dark .bg-greyish {
+    background-color: #604d5e;
+}
+
+.dark .bg-greeny {
+    background-color: #257569;
+}
+
+.dark .bg-pinky {
+    background-color: #d06588;
+}
+
+.dark .bg-orangey {
+    background-color: #ef7e29;
+}
+
 .light, .light #logo, .dark #offcanvasRight {
     background-color: var(--cream);
     color: var(--plum);
@@ -37,11 +53,21 @@ body {
     z-index: 1;
 }
 
+#darkMode {
+    width: 100%;
+}
+
 .accordion-button:not(.collapsed){
     --plum: #493843 !important;
 }
 
+.edituser input:checked + label:before {
+    content:'Blocked User'
+}
 
+.edituser input + label:before {
+    content:'Unblocked User'
+}
 
 .accordion-button:not(.collapsed), .accordion-button:not(.collapsed)::after {
     color: #493843 !important;

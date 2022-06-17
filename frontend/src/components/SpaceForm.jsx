@@ -1,6 +1,9 @@
-import { useDispatch } from 'react-redux'
-import { createSpace } from '../features/spaces/spaceSlice'
-import { FaPlus, FaPen, FaImage, FaHouseUser, FaListAlt, FaMapMarkerAlt, FaMapMarker, FaUserPlus, FaRegCalendarAlt, FaPlusCircle } from 'react-icons/fa'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { createSpace, reset } from '../features/spaces/spaceSlice'
+import { FaPlus, FaPen, FaImage, FaHouseUser, FaListAlt, FaMapMarkerAlt, FaMapMarker, FaUserPlus, FaRegCalendarAlt, FaPlusCircle, FaQuestionCircle } from 'react-icons/fa'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
@@ -14,6 +17,7 @@ const SpaceForm = () => {
 
     // declare dispatch from react-redux 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     // reset fields using initialValues object from formik
     const formik = useFormik({
@@ -59,12 +63,34 @@ const SpaceForm = () => {
         }),
 
         onSubmit: values => {
-            console.log(values)
-
             // use dispatch to post to createSpace
             dispatch(createSpace(values))
         },
     })
+
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
+    // react-redux gets state from global 'auth' state   
+    (state) => state.auth)
+        
+    useEffect(() => {
+        if(isSuccess){
+            navigate('/createdspaces')
+            toast.success('Success! Space Created')
+        }
+        if(isError) {
+            toast.error('message')
+        }
+        dispatch(reset())
+        }, [user, isError, isSuccess, message, navigate, dispatch])
+
+
+    var countBox = 1;
+    function addUser(){ 
+        document.getElementById('newfields').innerHTML+='<br/><input type="text" id="spaceusers" class="rounded-lg p-3 bg-slate-50 mb-5 focus:outline-none focus:bg-white w-full" name="spaceusers" placeholder="user email" /><br/>'
+        countBox += 1;
+        // console.log(countBox)
+    }
 
     return (
         <section>
@@ -79,7 +105,7 @@ const SpaceForm = () => {
                     className={inputClassName}
                     name="spacename" 
                     id="spacename"
-                    placeholder='Name your JointSpace'
+                    placeholder='Name your Jointspace'
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.spacename}
@@ -95,7 +121,7 @@ const SpaceForm = () => {
                     name="description" 
                     id="description" 
                     rows="4"
-                    placeholder='About this space'
+                    placeholder='A short description about this space and your intention in share it.'
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.description}
@@ -110,7 +136,7 @@ const SpaceForm = () => {
                     className={inputClassName}
                     name="rules" 
                     id="rules"
-                    placeholder='Rules of the space'
+                    placeholder='The rules of using this space, to maintain it easier as a community.'
                     rows="4" 
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -165,11 +191,14 @@ const SpaceForm = () => {
                     value={formik.values.capacity}
                 />
                 
-                <label htmlFor="spacetype" className='relative'><FaRegCalendarAlt className={formiconClassName}/>Single/Multi
+                <label htmlFor="spacetype" className='relative'><FaRegCalendarAlt className={formiconClassName}/>Is this a single or multi bookings space?
                 {formik.touched.spacetype && formik.errors.spacetype ? (
                     <span className={errorClassName}>{formik.errors.spacetype}</span>
                 ) : null}
                 </label>
+
+               
+
                 <input 
                     type="text" 
                     className={inputClassName}
@@ -181,6 +210,15 @@ const SpaceForm = () => {
                     value={formik.values.spacetype}
                 />
 
+                <details className='mb-5'>   
+                    <summary>What does single or multi mean <FaQuestionCircle className='inline'/></summary>
+                    <p><br/>Single<br/>
+                    If this is a 'single' bookings space, it can be booked by one user at a time, even if that is on the behalf of a group.<br/><br/>
+                    Multi<br/>
+                    If this is a 'multi' bookings space, it can be booked by multiple users at any one time.
+                    </p>
+                </details> 
+
                 <label htmlFor="spaceusers" className='relative'><FaPlusCircle className={formiconClassName}/>Invite Users
                 {formik.touched.spaceusers && formik.errors.spaceusers ? (
                     <span className={errorClassName}>{formik.errors.spaceusers}</span>
@@ -191,21 +229,20 @@ const SpaceForm = () => {
                     className={inputClassName}
                     name="spaceusers" 
                     id="spaceusers" 
+                    placeholder="user email"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.spaceusers}
                 />
-                <div id="newusers"></div>
 
-                <button 
-                    className='outline-dashed outline-2 rounded-lg w-full p-3 mb-5'
-                >
-                    
+                <span id="newfields"></span>
+
+                <button type="button" className='outline-dashed outline-2 rounded-lg w-full p-3 mb-5' onClick={addUser}>
                     <span className='inline-block pr-4'><FaPlus /></span>
                     Add User
                 </button>
 
-                <label htmlFor="spaceimage" className='relative'><FaImage className={formiconClassName}/>Image Path
+                <label htmlFor="spaceimage" className='relative'><FaImage className={formiconClassName}/>Feature Image
                 {formik.touched.spaceimage && formik.errors.spaceimage ? (
                     <span className={errorClassName}>{formik.errors.spaceimage}</span>
                 ) : null}
@@ -215,13 +252,19 @@ const SpaceForm = () => {
                     className={inputClassName}
                     name="spaceimage" 
                     id="spaceimage" 
-                    placeholder='Path to feature image'
+                    placeholder='http://imagehost.com/yourimage'
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.spaceimage}
                 />
 
-                <button className='bg-pinky rounded-lg p-5 mb-5 text-plum' type="submit"><h2>Share my Jointspace</h2></button>
+                <details className='mb-5'>   
+                    <summary>How to add an a Feature image <FaQuestionCircle className='inline'/></summary>
+                    <p><br/>We currently require you to link an externally hosted feature image. 
+                    </p>
+                </details> 
+
+                <button className='bg-pinky rounded-lg p-5 mb-5' type="submit"><h2>Create Jointspace</h2></button>
             </form>
         </section>
     )

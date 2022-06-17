@@ -36,11 +36,13 @@ const Darkmode = () => {
       id="darkMode"      
       onClick={e => switchTheme(e)}    
     >
-      <span id="darkmode_btn" className="rounded-lg p-2 inline-block my-5">
+      <h3 id="darkmode_btn" className="border-2 rounded-lg p-3 mb-5 w-full">
         <FaRegLightbulb className='inline-block mr-2'/>
         Switch Darkmode
-      </span>
+      </h3>
     </button>
+
+
   )
 }
 

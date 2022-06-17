@@ -9,6 +9,8 @@ const dotenv = require('dotenv').config()
 
 // Call error middleware for development mode 
 const { errorHandler } = require('./middleware/errorMiddleware')
+// Call error middleware for development mode 
+// const { accessControl } = require('./middleware/accessControl')
 // Call mongo atlas database 
 const connectDB = require('./config/db')
 // Server running on port 5000 
@@ -23,7 +25,21 @@ connectDB()
 const server = express()
 
 // Cors whitelist origins
-server.use(cors({ origin: [...process.env.CORS_ORIGIN.split(", ")], }))
+server.use(cors
+    (
+        { 
+            origin: [...process.env.CORS_ORIGIN.split(", ")],
+         }
+    ))
+
+server.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    next();
+});
 
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
@@ -40,11 +56,13 @@ server.use('/api', require('./routes/bookingRoutes'))
 // Link up Requests controller, prefixing route url with /api
 server.use('/api', require('./routes/requestRoutes'))
 
+// Link up Logs controller, prefixing route url with /api
+server.use('/api', require('./routes/logRoutes'))
+
 // Serve Frontend 
 if(process.env.NODE_ENV === 'production'){
     console.log('in production')
     server.use(express.static(path.join(__dirname, '../frontend/build')))
-    
     server.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')))
 } else {
     server.get('/', (req, res) => res.send('Please set to production'))

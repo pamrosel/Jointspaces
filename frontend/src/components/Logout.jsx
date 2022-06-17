@@ -11,11 +11,14 @@ function Header() {
         dispatch(logout())
         dispatch(reset())
         navigate('/loggedout')
+        localStorage.setItem('usertype', 'unauthorized')
     }
 
     return (
-        <button className='btn block' data-bs-dismiss="offcanvas" aria-label="Close" onClick={onLogout}>
-            <FaSignOutAlt /> Logout
+        <button className='border-2 rounded-lg p-3 mb-5 w-full' data-bs-dismiss="offcanvas" aria-label="Close" onClick={onLogout}>
+            <h3>
+                <FaSignOutAlt className='inline'/> Logout
+            </h3>
         </button>
     )
 }

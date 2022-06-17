@@ -11,9 +11,8 @@ function Allspaces() {
   useEffect(() => {
     async function fetch() {
           try {
-              const { data } = await axios.get("http://localhost:3000/api/allspaces");
+              const { data } = await axios.get("/api/allspaces");
               setAllspaces(data);
-              console.log(data);
           } catch (err) {
               console.error(err);
           }
@@ -24,7 +23,7 @@ function Allspaces() {
   return (
     <>
       <section className='mb-8'>
-        <h1>Welcome <span className="text-greeny">{user && user.name}</span>, these are the spaces you are sharing.</h1>
+        <h1>Welcome <span className="text-featuretext">{user && user.name}</span>, these are the spaces you are sharing.</h1>
       </section>
 
       <section>
