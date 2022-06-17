@@ -24,7 +24,6 @@ const Login = () => {
         .then(result => result.json())
             .then((data) => {                
                 // If users ip does not match whitelisted IP, navigate to 404 
-                console.log(data.ip)
                 if(adminIp === data.ip){
                     toast.error('You are an admin!');
                     navigate ('/adminlogin');
