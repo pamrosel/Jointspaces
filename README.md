@@ -1,5 +1,5 @@
 Jointspaces Application
-Creator: Pamela Rosel (472828250)
+Creator: Pamela Rosel
 Year Created: 2022
 
 ---
