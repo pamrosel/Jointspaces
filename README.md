@@ -1,6 +1,4 @@
-Jointspaces Application
-Creator: Pamela Rosel
-Year Created: 2022
+Jointspaces
 
 ---
 
