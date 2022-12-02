@@ -4,7 +4,6 @@ Year Created: 2022
 
 ---
 
-APPLICATION DEPLOYMENT
 This is a space sharing app, that allows users to make their own spaces available for sharing across trusted networks of friends, family and peers alike. 
 
 To visit the deployed application on Heroku:
